@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.CurvatureDrive;
 import frc.robot.Robot;
 
 /**
@@ -21,10 +22,19 @@ public class Drivetrain extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new ArcadeDrive());
+    // setDefaultCommand(new ArcadeDrive());
+    setDefaultCommand(new CurvatureDrive());
   }
 
   public void arcadeDrive(double speed, double rotation) {
     drive.arcadeDrive(speed, rotation);
+  }
+
+  public void curvatureDrive(double speed, double rotation) {
+    drive.curvatureDrive(speed, rotation, true);
+  }
+
+  public void stop() {
+    drive.stopMotor();
   }
 }

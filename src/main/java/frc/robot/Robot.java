@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.CurvatureDrive;
 import frc.robot.subsystems.Drivetrain;
 
 /**
@@ -37,7 +38,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     oi = new OI();
-    chooser.setDefaultOption("Default Auto", new ArcadeDrive());
+    // chooser.setDefaultOption("Manual Drive", new ArcadeDrive());
+    chooser.setDefaultOption("Manual Drive", new CurvatureDrive());
     SmartDashboard.putData("Auto mode", chooser);
   }
 
