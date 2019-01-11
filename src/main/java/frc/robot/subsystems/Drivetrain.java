@@ -9,8 +9,8 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import frc.robot.commands.ArcadeDrive;
-import frc.robot.commands.CurvatureDrive;
+import frc.robot.commands.drivetrain.ArcadeDrive;
+import frc.robot.commands.drivetrain.CurvatureDrive;
 import frc.robot.Robot;
 
 /**
@@ -18,7 +18,8 @@ import frc.robot.Robot;
  */
 public class Drivetrain extends Subsystem {
 
-  public DifferentialDrive drive = new DifferentialDrive(Robot.oi.driveLeft, Robot.oi.driveRight);
+  public DifferentialDrive drive = new DifferentialDrive(Robot.oi.driveLeftMotor, 
+                                                         Robot.oi.driveRightMotor);
 
   @Override
   public void initDefaultCommand() {

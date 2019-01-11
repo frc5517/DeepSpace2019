@@ -14,10 +14,24 @@ package frc.robot;
  * floating around.
  */
 public class RobotMap {
+
+  // motor controller ports
   public static int driveLeftPort = 0;
   public static int driveRightPort = 1;
+  public static int wristPort = 2;
+  public static int elevatorPort = 3;
+  public static int cargoManipulatorPort = 4; 
+  public static int armLeftPort = 0;
+  public static int armRightPort = 1;
 
-  //Joysticks
+  // solenoid ports
+  public static int hatchSolenoidPort = 0;
+  public static int climbFrontSolenoidForwardPort = 1;
+  public static int climbFrontSolenoidReversePort = 2;
+  public static int climbRearSolenoidForwardPort = 3;
+  public static int climbRearSolenoidReversePort = 4;
+
+  // joystick ports
   public static int leftJoystickPort = 0;
   public static int rightJoystickPort = 1;
 }

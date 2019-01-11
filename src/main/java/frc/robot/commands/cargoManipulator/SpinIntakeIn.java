@@ -5,14 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.cargoManipulator;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class CurvatureDrive extends Command {
-  public CurvatureDrive() {
-    requires(Robot.drivetrain);
+public class SpinIntakeIn extends Command {
+  public SpinIntakeIn() {
+    requires(Robot.cargoManiuplator);
   }
 
   // Called just before this Command runs the first time
@@ -23,9 +23,7 @@ public class CurvatureDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.drivetrain.curvatureDrive(Robot.oi.getLeftX(), 
-                                    Robot.oi.getRightY()
-    );
+    Robot.cargoManiuplator.spinIntakeIn();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -37,7 +35,7 @@ public class CurvatureDrive extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.drivetrain.stop();
+    Robot.cargoManiuplator.stopIntake();
   }
 
   // Called when another command which requires one or more of the same

@@ -8,8 +8,14 @@
 package frc.robot;
 
 import frc.robot.RobotMap;
+
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.Talon;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -17,9 +23,29 @@ import edu.wpi.first.wpilibj.Spark;
  */
 public class OI {
 
-  // motor controllers
-  public Spark driveLeft = new Spark(RobotMap.driveLeftPort);
-  public Spark driveRight = new Spark(RobotMap.driveRightPort);
+  // drivetrain motor controllers
+  public Spark driveLeftMotor = new Spark(RobotMap.driveLeftPort);
+  public Spark driveRightMotor = new Spark(RobotMap.driveRightPort);
+
+  // elevator motor controller
+  public Talon elevatorMotor = new Talon(RobotMap.elevatorPort);
+
+  // cargo manipulator motor controllers
+  public Talon cargoManipulatorMotor = new Talon(RobotMap.cargoManipulatorPort);
+
+  // wrist motor controller
+  public Talon wristMotor = new Talon(RobotMap.wristPort);
+
+  // arm motor controllers
+  public WPI_VictorSPX armLeftMotor = new WPI_VictorSPX(RobotMap.armLeftPort);
+  public WPI_VictorSPX armRightMotor = new WPI_VictorSPX(RobotMap.armRightPort);
+
+  // solenoids
+  public Solenoid hatchSolenoid = new Solenoid(RobotMap.hatchSolenoidPort);
+  public DoubleSolenoid climbSolenoidFront = new DoubleSolenoid(RobotMap.climbFrontSolenoidForwardPort, 
+                                                                RobotMap.climbFrontSolenoidReversePort);
+  public DoubleSolenoid climbSolenoidRear = new DoubleSolenoid(RobotMap.climbRearSolenoidForwardPort, 
+                                                               RobotMap.climbRearSolenoidReversePort);
 
   // joysticks
   public Joystick leftJoystick = new Joystick(RobotMap.leftJoystickPort);

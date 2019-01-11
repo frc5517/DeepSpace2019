@@ -13,9 +13,15 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import frc.robot.commands.ArcadeDrive;
-import frc.robot.commands.CurvatureDrive;
+import frc.robot.commands.drivetrain.ArcadeDrive;
+import frc.robot.commands.drivetrain.CurvatureDrive;
+import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.CargoManiuplator;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.HatchManipulator;
+import frc.robot.subsystems.Wrist;
+import frc.robot.subsystems.Climber;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,7 +31,15 @@ import frc.robot.subsystems.Drivetrain;
  * project.
  */
 public class Robot extends TimedRobot {
+
+  // initializing subsystems
   public static Drivetrain drivetrain = new Drivetrain();
+  public static Arm arm = new Arm();
+  public static Elevator elevator = new Elevator();
+  public static Wrist wrist = new Wrist();
+  public static CargoManiuplator cargoManiuplator = new CargoManiuplator();
+  public static HatchManipulator hatchManipulator = new HatchManipulator();
+  public static Climber climber = new Climber();
   public static OI oi;
 
   Command autonomousCommand;
