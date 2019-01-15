@@ -15,8 +15,8 @@ import frc.robot.Robot;
  */
 public class Wrist extends Subsystem {
 
-  public final double WRIST_SPEED = 0.75;
-  public final double STOP_SPEED = 0;
+  public final double WRIST_SPEED = 0.30;
+  public final double STOP_SPEED = 0.0;
 
   @Override
   public void initDefaultCommand() {

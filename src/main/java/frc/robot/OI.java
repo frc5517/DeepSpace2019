@@ -13,7 +13,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Talon;
 
@@ -41,7 +40,8 @@ public class OI {
   public WPI_VictorSPX armRightMotor = new WPI_VictorSPX(RobotMap.armRightPort);
 
   // solenoids
-  public Solenoid hatchSolenoid = new Solenoid(RobotMap.hatchSolenoidPort);
+  public DoubleSolenoid hatchSolenoid = new DoubleSolenoid(RobotMap.hatchSolenoidForwardPort,
+                                                           RobotMap.hatchSolenoidReversePort);
   public DoubleSolenoid climbSolenoidFront = new DoubleSolenoid(RobotMap.climbFrontSolenoidForwardPort, 
                                                                 RobotMap.climbFrontSolenoidReversePort);
   public DoubleSolenoid climbSolenoidRear = new DoubleSolenoid(RobotMap.climbRearSolenoidForwardPort, 
