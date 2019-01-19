@@ -35,7 +35,7 @@ public class Drivetrain extends Subsystem {
     drive.curvatureDrive(speed, rotation, true);
   }
 
-  public void stop() {
+  public void stopDriveMotors() {
     drive.stopMotor();
   }
 }

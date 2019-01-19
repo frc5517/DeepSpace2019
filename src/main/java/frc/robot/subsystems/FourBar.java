@@ -11,11 +11,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 
 /**
- * Four-bar arm that is used to score Cargo and Hatch Covers
+ * Four-bar FourBar that is used to score Cargo and Hatch Covers
  */
-public class Arm extends Subsystem {
+public class FourBar extends Subsystem {
 
-  public final double ARM_SPEED = 0.5;
+  public final double FOUR_BAR_SPEED = 0.5;
   public final double STOP_SPEED = 0;
 
   @Override
@@ -23,19 +23,15 @@ public class Arm extends Subsystem {
     setDefaultCommand(null);
   }
 
-  public void raiseArm() {
-    Robot.oi.armLeftMotor.set(ARM_SPEED);
-    Robot.oi.armRightMotor.set(-ARM_SPEED);
+  public void raiseFourBar() {
+    Robot.oi.fourBarMotor.set(FOUR_BAR_SPEED);
   }
 
-  public void lowerArm() {
-    Robot.oi.armLeftMotor.set(-ARM_SPEED);
-    Robot.oi.armRightMotor.set(ARM_SPEED);
+  public void lowerFourBar() {
+    Robot.oi.fourBarMotor.set(-FOUR_BAR_SPEED);
   }
   
-  public void stopArm() {
-    Robot.oi.armLeftMotor.set(STOP_SPEED);
-    Robot.oi.armRightMotor.set(STOP_SPEED);
+  public void stopFourBar() {
+    Robot.oi.fourBarMotor.set(STOP_SPEED);
   }
-  
 }

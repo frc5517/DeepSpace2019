@@ -15,14 +15,16 @@ package frc.robot;
  */
 public class RobotMap {
 
-  // motor controller ports
+  // PWM motor controller ports
   public static int driveLeftPort = 0;
   public static int driveRightPort = 1;
+  
+  // CAN motor controller ports
+  public static int fourBarPort = 0;
+  public static int elevatorPort = 1;
   public static int wristPort = 2;
-  public static int elevatorPort = 3;
-  public static int cargoManipulatorPort = 4; 
-  public static int armLeftPort = 0;
-  public static int armRightPort = 1;
+  public static int cargoManipulatorPort = 3; 
+  public static int climbWheelPort = 4;
 
   // solenoid ports
   public static int hatchSolenoidForwardPort = 0;
@@ -35,4 +37,7 @@ public class RobotMap {
   // joystick ports
   public static int leftJoystickPort = 0;
   public static int rightJoystickPort = 1;
+
+  // gamepad port
+  public static int operatorGamepadPort = 2;
 }

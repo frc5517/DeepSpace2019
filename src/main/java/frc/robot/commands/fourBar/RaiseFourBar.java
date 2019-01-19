@@ -5,14 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.climber;
+package frc.robot.commands.fourBar;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class RaiseClimb extends Command {
-  public RaiseClimb() {
-    requires(Robot.climber);
+public class RaiseFourBar extends Command {
+  public RaiseFourBar() {
+    requires(Robot.fourBar);
   }
 
   // Called just before this Command runs the first time
@@ -23,7 +23,7 @@ public class RaiseClimb extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.climber.raiseClimbSolenoids();
+    Robot.fourBar.raiseFourBar();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -35,7 +35,7 @@ public class RaiseClimb extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.climber.stopClimbSolenoids();
+    Robot.fourBar.stopFourBar();
   }
 
   // Called when another command which requires one or more of the same

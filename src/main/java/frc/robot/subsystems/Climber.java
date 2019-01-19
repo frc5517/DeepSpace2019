@@ -26,8 +26,11 @@ public class Climber extends Subsystem {
     Robot.oi.climbSolenoidRear.set(DoubleSolenoid.Value.kForward);
   }
 
-  public void lowerClimbSolenoids() {
+  public void lowerFrontClimbSolenoids() {
     Robot.oi.climbSolenoidFront.set(DoubleSolenoid.Value.kReverse);
+  }
+
+  public void lowerRearClimbSolenoids() {
     Robot.oi.climbSolenoidRear.set(DoubleSolenoid.Value.kReverse);
   }
 

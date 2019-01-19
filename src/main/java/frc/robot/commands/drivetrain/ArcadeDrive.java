@@ -41,7 +41,7 @@ public class ArcadeDrive extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.drivetrain.stop();
+    Robot.drivetrain.stopDriveMotors();
   }
 
   // Called when another command which requires one or more of the same
