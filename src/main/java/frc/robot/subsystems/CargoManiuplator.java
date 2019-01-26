@@ -7,8 +7,10 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 /**
  * Used for intaking and scoring Cargo
@@ -18,20 +20,24 @@ public class CargoManiuplator extends Subsystem {
   public final double SPIN_SPEED = 0.75;
   public final double STOP_SPEED = 0;
 
+  
+  // cargo manipulator motor controllers
+  public WPI_TalonSRX cargoManipulatorMotor = new WPI_TalonSRX(RobotMap.cargoManipulatorPort);
+
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(null);
   }
 
   public void spinIntakeIn() {
-    Robot.oi.cargoManipulatorMotor.set(SPIN_SPEED);
+    cargoManipulatorMotor.set(SPIN_SPEED);
   }
 
   public void spinIntakeOut() {
-    Robot.oi.cargoManipulatorMotor.set(-SPIN_SPEED);
+    cargoManipulatorMotor.set(-SPIN_SPEED);
   }
   
   public void stopIntake() {
-    Robot.oi.cargoManipulatorMotor.set(STOP_SPEED);
+    cargoManipulatorMotor.set(STOP_SPEED);
   }
 }

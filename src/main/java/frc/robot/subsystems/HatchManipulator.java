@@ -9,27 +9,32 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
  */
 public class HatchManipulator extends Subsystem {
   
+  
+  // solenoids
+  DoubleSolenoid hatchSolenoid = new DoubleSolenoid(RobotMap.hatchSolenoidForwardPort,
+                                                    RobotMap.hatchSolenoidReversePort);
+
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(null);
   }
 
   public void hatchSolenoidForward() {
-    Robot.oi.hatchSolenoid.set(DoubleSolenoid.Value.kForward);
+    hatchSolenoid.set(DoubleSolenoid.Value.kForward);
   }
 
   public void hatchSolenoidReverse() {
-    Robot.oi.hatchSolenoid.set(DoubleSolenoid.Value.kReverse);
+    hatchSolenoid.set(DoubleSolenoid.Value.kReverse);
   }
 
   public void stopHatchSolenoid() {
-    Robot.oi.hatchSolenoid.set(DoubleSolenoid.Value.kOff);
+    hatchSolenoid.set(DoubleSolenoid.Value.kOff);
   }
 }

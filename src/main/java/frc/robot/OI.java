@@ -9,14 +9,10 @@ package frc.robot;
 
 import frc.robot.RobotMap;
 import frc.robot.commands.drivetrain.CurvatureDriveFullSpeed;
+
+
 import frc.robot.utilities.Gamepad;
-
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -30,29 +26,6 @@ public class OI {
     bindControls();
   }
 
-  // drivetrain motor controllers
-  public Spark driveLeftMotor = new Spark(RobotMap.driveLeftPort);
-  public Spark driveRightMotor = new Spark(RobotMap.driveRightPort);
-
-  // elevator motor controller
-  public WPI_VictorSPX elevatorMotor = new WPI_VictorSPX(RobotMap.elevatorPort);
-
-  // cargo manipulator motor controllers
-  public WPI_TalonSRX cargoManipulatorMotor = new WPI_TalonSRX(RobotMap.cargoManipulatorPort);
-
-  // wrist motor controller
-  public WPI_TalonSRX wristMotor = new WPI_TalonSRX(RobotMap.wristPort);
-
-  // four-bar motor controller
-  public WPI_TalonSRX fourBarMotor = new WPI_TalonSRX(RobotMap.fourBarPort);
-
-  // solenoids
-  public DoubleSolenoid hatchSolenoid = new DoubleSolenoid(RobotMap.hatchSolenoidForwardPort,
-                                                           RobotMap.hatchSolenoidReversePort);
-  public DoubleSolenoid climbSolenoidFront = new DoubleSolenoid(RobotMap.climbFrontSolenoidForwardPort, 
-                                                                RobotMap.climbFrontSolenoidReversePort);
-  public DoubleSolenoid climbSolenoidRear = new DoubleSolenoid(RobotMap.climbRearSolenoidForwardPort, 
-                                                               RobotMap.climbRearSolenoidReversePort);
 
   // joysticks + gamepad
   public Joystick leftJoystick = new Joystick(RobotMap.leftJoystickPort);
@@ -83,6 +56,6 @@ public class OI {
   }
 
   public void bindControls() {
-    rightJoystickButtonOne.whileHeld(new CurvatureDriveFullSpeed());
+    // rightJoystickButtonOne.whileHeld(new CurvatureDriveFullSpeed());
   }
 }

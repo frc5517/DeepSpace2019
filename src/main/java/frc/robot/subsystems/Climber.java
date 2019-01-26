@@ -7,14 +7,20 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Robot;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
+
 
 /**
  * Pneumatic cyliders that will allow the robot to climb to Hab Level two
  */
-public class Climber extends Subsystem {
+public class Climber extends Subsystem  {
+
+  DoubleSolenoid climbSolenoidFront = new DoubleSolenoid(RobotMap.climbFrontSolenoidForwardPort, 
+                                                         RobotMap.climbFrontSolenoidReversePort);
+  DoubleSolenoid climbSolenoidRear = new DoubleSolenoid(RobotMap.climbRearSolenoidForwardPort, 
+                                                        RobotMap.climbRearSolenoidReversePort);
 
   @Override
   public void initDefaultCommand() {
@@ -22,20 +28,20 @@ public class Climber extends Subsystem {
   }
 
   public void raiseClimbSolenoids() {
-    Robot.oi.climbSolenoidFront.set(DoubleSolenoid.Value.kForward);
-    Robot.oi.climbSolenoidRear.set(DoubleSolenoid.Value.kForward);
+    climbSolenoidFront.set(DoubleSolenoid.Value.kForward);
+    climbSolenoidRear.set(DoubleSolenoid.Value.kForward);
   }
 
   public void lowerFrontClimbSolenoids() {
-    Robot.oi.climbSolenoidFront.set(DoubleSolenoid.Value.kReverse);
+    climbSolenoidFront.set(DoubleSolenoid.Value.kReverse);
   }
 
   public void lowerRearClimbSolenoids() {
-    Robot.oi.climbSolenoidRear.set(DoubleSolenoid.Value.kReverse);
+    climbSolenoidRear.set(DoubleSolenoid.Value.kReverse);
   }
 
   public void stopClimbSolenoids() {
-    Robot.oi.climbSolenoidFront.set(DoubleSolenoid.Value.kOff);
-    Robot.oi.climbSolenoidRear.set(DoubleSolenoid.Value.kOff);
+    climbSolenoidFront.set(DoubleSolenoid.Value.kOff);
+    climbSolenoidRear.set(DoubleSolenoid.Value.kOff);
   }
 }

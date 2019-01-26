@@ -9,17 +9,22 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.Spark;
 import frc.robot.commands.drivetrain.ArcadeDrive;
 import frc.robot.commands.drivetrain.CurvatureDrive;
-import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
 public class Drivetrain extends Subsystem {
 
-  public DifferentialDrive drive = new DifferentialDrive(Robot.oi.driveLeftMotor, 
-                                                         Robot.oi.driveRightMotor);
+   // drivetrain motor controllers
+  Spark driveLeftMotor = new Spark(RobotMap.driveLeftPort);
+  Spark driveRightMotor = new Spark(RobotMap.driveRightPort);
+
+  public DifferentialDrive drive = new DifferentialDrive(driveLeftMotor, 
+                                                         driveRightMotor);
 
   @Override
   public void initDefaultCommand() {
