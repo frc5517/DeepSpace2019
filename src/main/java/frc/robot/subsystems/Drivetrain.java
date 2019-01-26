@@ -20,11 +20,10 @@ import frc.robot.RobotMap;
 public class Drivetrain extends Subsystem {
 
    // drivetrain motor controllers
-  Spark driveLeftMotor = new Spark(RobotMap.driveLeftPort);
-  Spark driveRightMotor = new Spark(RobotMap.driveRightPort);
+  Spark driveLeft = new Spark(RobotMap.driveLeftPort);
+  Spark driveRight = new Spark(RobotMap.driveRightPort);
 
-  public DifferentialDrive drive = new DifferentialDrive(driveLeftMotor, 
-                                                         driveRightMotor);
+  DifferentialDrive drive = new DifferentialDrive(driveLeft, driveRight);
 
   @Override
   public void initDefaultCommand() {
