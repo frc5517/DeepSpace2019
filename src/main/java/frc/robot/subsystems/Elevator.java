@@ -17,8 +17,10 @@ import frc.robot.RobotMap;
  */
 public class Elevator extends Subsystem {
 
-  public final double ELEVATOR_SPEED = 0.75;
-  public final double STOP_SPEED = 0;
+  public final double ELEVATOR_LIFT_SPEED = 0.65;
+  public final double ELEVATOR_LOWER_SPEED = -0.40;
+  public final double ELEVATOR_CLIMB_SPEED = -1.00;
+  public final double STOP_SPEED = 0.00;
 
   
   // elevator motor controller
@@ -30,11 +32,15 @@ public class Elevator extends Subsystem {
   }
 
   public void raiseElevator() {
-    elevatorMotor.set(ELEVATOR_SPEED);
+    elevatorMotor.set(ELEVATOR_LIFT_SPEED);
   }
 
   public void lowerElevator() {
-    elevatorMotor.set(-ELEVATOR_SPEED);
+    elevatorMotor.set(ELEVATOR_LOWER_SPEED);
+  }
+
+  public void lowerElevatorMaxSpeed() {
+    elevatorMotor.set(ELEVATOR_CLIMB_SPEED);
   }
   
   public void stopElevator() {

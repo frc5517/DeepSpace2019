@@ -23,8 +23,7 @@ public class RobotMap {
   public static int fourBarPort = 0;
   public static int elevatorPort = 1;
   public static int wristPort = 2;
-  public static int cargoManipulatorPort = 3; 
-  public static int climbWheelPort = 4;
+  public static int cargoManipulatorPort = 3;
 
   // solenoid ports
   public static int hatchSolenoidForwardPort = 0;

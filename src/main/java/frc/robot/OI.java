@@ -8,8 +8,13 @@
 package frc.robot;
 
 import frc.robot.RobotMap;
-import frc.robot.commands.drivetrain.CurvatureDriveFullSpeed;
 
+// import frc.robot.commands.drivetrain.CurvatureDriveFullSpeed;
+// import frc.robot.commands.elevator.LowerElevator;
+// import frc.robot.commands.elevator.LowerElevatorMaxSpeed;
+// import frc.robot.commands.elevator.RaiseElevator;
+import frc.robot.commands.fourBar.LowerFourBar;
+import frc.robot.commands.fourBar.RaiseFourBar;
 
 import frc.robot.utilities.Gamepad;
 import edu.wpi.first.wpilibj.Joystick;
@@ -25,7 +30,6 @@ public class OI {
   public OI() {
     bindControls();
   }
-
 
   // joysticks + gamepad
   public Joystick leftJoystick = new Joystick(RobotMap.leftJoystickPort);
@@ -57,5 +61,8 @@ public class OI {
 
   public void bindControls() {
     // rightJoystickButtonOne.whileHeld(new CurvatureDriveFullSpeed());
+    operatorGamepad.getRightShoulder().whileHeld(new RaiseFourBar());
+    operatorGamepad.getLeftShoulder().whileHeld(new LowerFourBar());
+    // operatorGamepad.getStartButton().whileHeld(new LowerElevatorMaxSpeed());
   }
 }

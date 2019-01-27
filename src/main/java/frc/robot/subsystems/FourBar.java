@@ -7,7 +7,10 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.Talon;
+
+// import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -17,12 +20,13 @@ import frc.robot.RobotMap;
  */
 public class FourBar extends Subsystem {
 
-  public final double FOUR_BAR_SPEED = 0.5;
-  public final double STOP_SPEED = 0;
+  public final double FOUR_BAR_SPEED = 0.35;
+  public final double STOP_SPEED = 0.00;
 
   
   // four-bar motor controller
-  WPI_TalonSRX fourBarMotor = new WPI_TalonSRX(RobotMap.fourBarPort);
+  // WPI_TalonSRX fourBarMotor = new WPI_TalonSRX(RobotMap.fourBarPort);
+  Talon fourBarMotor = new Talon(4);
 
   @Override
   public void initDefaultCommand() {
