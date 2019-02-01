@@ -27,19 +27,23 @@ public class Climber extends Subsystem  {
     setDefaultCommand(null);
   }
 
+  // extends the climb solenoids
   public void raiseClimbSolenoids() {
     climbSolenoidFront.set(DoubleSolenoid.Value.kForward);
     climbSolenoidRear.set(DoubleSolenoid.Value.kForward);
   }
 
+  // retracts the front climb solenoids
   public void lowerFrontClimbSolenoids() {
     climbSolenoidFront.set(DoubleSolenoid.Value.kReverse);
   }
 
+  // retracts the rear climb solenoids
   public void lowerRearClimbSolenoids() {
     climbSolenoidRear.set(DoubleSolenoid.Value.kReverse);
   }
 
+  // stops the climb solenoids
   public void stopClimbSolenoids() {
     climbSolenoidFront.set(DoubleSolenoid.Value.kOff);
     climbSolenoidRear.set(DoubleSolenoid.Value.kOff);

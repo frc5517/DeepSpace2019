@@ -31,10 +31,12 @@ public class Elevator extends Subsystem {
     setDefaultCommand(null);
   }
 
+  // allows the elevator to be raised
   public void raiseElevator() {
     elevatorMotor.set(ELEVATOR_LIFT_SPEED);
   }
 
+  // allows the elevator to be lowered
   public void lowerElevator() {
     elevatorMotor.set(ELEVATOR_LOWER_SPEED);
   }
@@ -43,6 +45,7 @@ public class Elevator extends Subsystem {
     elevatorMotor.set(ELEVATOR_CLIMB_SPEED);
   }
   
+  // stops the elevator
   public void stopElevator() {
     elevatorMotor.set(STOP_SPEED);
   }

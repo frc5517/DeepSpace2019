@@ -29,14 +29,17 @@ public class Wrist extends Subsystem {
     setDefaultCommand(null);
   }
 
+  // allows the wrist to raise
   public void raiseWrist() {
     wristMotor.set(WRIST_SPEED);
   }
 
+  // allows the wrist to lower
   public void lowerWrist() {
     wristMotor.set(-WRIST_SPEED);
   }
   
+  // stops the elevator
   public void stopWrist() {
     wristMotor.set(STOP_SPEED);
   }

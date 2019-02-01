@@ -7,10 +7,7 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Talon;
-
-// import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -25,22 +22,26 @@ public class FourBar extends Subsystem {
 
   
   // four-bar motor controller
-  // WPI_TalonSRX fourBarMotor = new WPI_TalonSRX(RobotMap.fourBarPort);
-  Talon fourBarMotor = new Talon(4);
+  WPI_TalonSRX fourBarMotor = new WPI_TalonSRX(RobotMap.fourBarPort);
 
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(null);
   }
 
+  // allowing the fourbar to raise
   public void raiseFourBar() {
     fourBarMotor.set(FOUR_BAR_SPEED);
   }
 
+
+  // allowing the fourbar to lower
   public void lowerFourBar() {
     fourBarMotor.set(-FOUR_BAR_SPEED);
   }
   
+
+  // stops the fourbar
   public void stopFourBar() {
     fourBarMotor.set(STOP_SPEED);
   }

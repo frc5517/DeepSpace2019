@@ -15,7 +15,7 @@ import frc.robot.commands.drivetrain.CurvatureDrive;
 import frc.robot.RobotMap;
 
 /**
- * An example subsystem.  You can replace me with your own Subsystem.
+ * Allows the robot to drive with Arcade drive or Curvature drive
  */
 public class Drivetrain extends Subsystem {
 
@@ -31,14 +31,17 @@ public class Drivetrain extends Subsystem {
     setDefaultCommand(new CurvatureDrive());
   }
 
+  // allowing the drivetrain to be controlled by Arcade drive controls
   public void arcadeDrive(double speed, double rotation) {
     drive.arcadeDrive(speed, rotation);
   }
 
+  // allowing the drivetrain to be controlled by Curvature drive controls
   public void curvatureDrive(double speed, double rotation) {
     drive.curvatureDrive(speed, rotation, true);
   }
 
+  // stops the drivetrain
   public void stopDriveMotors() {
     drive.stopMotor();
   }

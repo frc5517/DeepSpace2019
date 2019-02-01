@@ -29,14 +29,17 @@ public class CargoManiuplator extends Subsystem {
     setDefaultCommand(null);
   }
 
+  // allows the robot to intake cargo
   public void spinIntakeIn() {
     cargoManipulatorMotor.set(SPIN_SPEED);
   }
 
+  // allows the robot to score cargo
   public void spinIntakeOut() {
     cargoManipulatorMotor.set(-SPIN_SPEED);
   }
   
+  // stops the intake 
   public void stopIntake() {
     cargoManipulatorMotor.set(STOP_SPEED);
   }

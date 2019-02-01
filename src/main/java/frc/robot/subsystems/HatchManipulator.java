@@ -12,12 +12,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 /**
- * Add your docs here.
+ * Allows the scoring of Hatch Panels
  */
 public class HatchManipulator extends Subsystem {
   
   
-  // solenoids
+  // creating solenoid for scoring 
   DoubleSolenoid hatchSolenoid = new DoubleSolenoid(RobotMap.hatchSolenoidForwardPort,
                                                     RobotMap.hatchSolenoidReversePort);
 

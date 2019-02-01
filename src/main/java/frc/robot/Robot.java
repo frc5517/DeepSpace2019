@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -55,6 +56,9 @@ public class Robot extends TimedRobot {
     // chooser.setDefaultOption("Manual Drive", new ArcadeDrive());
     chooser.setDefaultOption("Manual Drive", new CurvatureDrive());
     SmartDashboard.putData("Auto mode", chooser);
+
+    CameraServer server = CameraServer.getInstance();
+		server.startAutomaticCapture(0);
   }
 
   /**
