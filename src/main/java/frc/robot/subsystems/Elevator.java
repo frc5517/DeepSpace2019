@@ -17,9 +17,9 @@ import frc.robot.RobotMap;
  */
 public class Elevator extends Subsystem {
 
-  public final double ELEVATOR_LIFT_SPEED = 0.65;
-  public final double ELEVATOR_LOWER_SPEED = -0.40;
-  public final double ELEVATOR_CLIMB_SPEED = -1.00;
+  public final double ELEVATOR_LIFT_SPEED = -0.65;
+  public final double ELEVATOR_LOWER_SPEED = 0.40;
+  public final double ELEVATOR_CLIMB_SPEED = 1.00;
   public final double STOP_SPEED = 0.00;
 
   

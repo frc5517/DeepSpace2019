@@ -23,7 +23,7 @@ public class CurvatureDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.drivetrain.curvatureDrive(Robot.oi.getRightY() * 0.75, 
+    Robot.drivetrain.curvatureDrive(Robot.oi.getRightY() * -0.75, 
                                     Robot.oi.getLeftX() * 0.75);
   }
 

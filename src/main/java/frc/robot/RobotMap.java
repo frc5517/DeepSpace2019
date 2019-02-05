@@ -21,8 +21,8 @@ public class RobotMap {
   
   // CAN motor controller ports
   public static int fourBarPort = 0;
-  public static int elevatorPort = 1;
-  public static int wristPort = 2;
+  public static int wristPort = 1;
+  public static int elevatorPort = 2;
   public static int cargoManipulatorPort = 3;
 
   // solenoid ports
