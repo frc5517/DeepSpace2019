@@ -61,8 +61,8 @@ public class OI {
 
   public void bindControls() {
     // rightJoystickButtonOne.whileHeld(new CurvatureDriveFullSpeed());
-    operatorGamepad.getRightShoulder().whileHeld(new RaiseElevator());
-    operatorGamepad.getLeftShoulder().whileHeld(new LowerElevator());
+    operatorGamepad.getRightShoulder().whileHeld(new RaiseFourBar());
+    operatorGamepad.getLeftShoulder().whileHeld(new LowerFourBar());
     // operatorGamepad.getStartButton().whileHeld(new LowerElevatorMaxSpeed());
   }
 }

@@ -17,7 +17,7 @@ import frc.robot.RobotMap;
  */
 public class FourBar extends Subsystem {
 
-  public final double FOUR_BAR_SPEED = 0.35;
+  public final double FOUR_BAR_SPEED = 0.65;
   public final double STOP_SPEED = 0.00;
 
   
@@ -31,13 +31,13 @@ public class FourBar extends Subsystem {
 
   // allowing the fourbar to raise
   public void raiseFourBar() {
-    fourBarMotor.set(FOUR_BAR_SPEED);
+    fourBarMotor.set(-FOUR_BAR_SPEED);
   }
 
 
   // allowing the fourbar to lower
   public void lowerFourBar() {
-    fourBarMotor.set(-FOUR_BAR_SPEED);
+    fourBarMotor.set(FOUR_BAR_SPEED);
   }
   
 
