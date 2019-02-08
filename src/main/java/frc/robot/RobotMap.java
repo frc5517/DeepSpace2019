@@ -39,4 +39,9 @@ public class RobotMap {
 
   // gamepad port
   public static int operatorGamepadPort = 2;
+
+  // camera settings
+  public static int cameraPort = 0;
+  public static int imageWidth = 320;
+  public static int imageHeight = 240;
 }
