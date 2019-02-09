@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.ErrorCode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,9 +22,12 @@ public class FourBar extends Subsystem {
   public final double FOUR_BAR_SPEED = 0.65;
   public final double STOP_SPEED = 0.00;
 
-  
   // four-bar motor controller
   WPI_TalonSRX fourBarMotor = new WPI_TalonSRX(RobotMap.fourBarPort);
+
+  // creating the encoder object 
+  ErrorCode fourBarEncoder = fourBarMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+  
 
   @Override
   public void initDefaultCommand() {
