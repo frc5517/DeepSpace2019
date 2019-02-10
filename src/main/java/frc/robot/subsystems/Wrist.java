@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -31,16 +32,16 @@ public class Wrist extends Subsystem {
 
   // allows the wrist to raise
   public void raiseWrist() {
-    wristMotor.set(WRIST_SPEED);
+    wristMotor.set(ControlMode.PercentOutput, WRIST_SPEED);
   }
 
   // allows the wrist to lower
   public void lowerWrist() {
-    wristMotor.set(-WRIST_SPEED);
+    wristMotor.set(ControlMode.PercentOutput, -WRIST_SPEED);
   }
   
   // stops the elevator
   public void stopWrist() {
-    wristMotor.set(STOP_SPEED);
+    wristMotor.set(ControlMode.PercentOutput, STOP_SPEED);
   }
 }

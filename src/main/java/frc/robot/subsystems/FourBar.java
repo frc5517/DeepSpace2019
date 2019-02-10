@@ -7,7 +7,7 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.ErrorCode;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -26,7 +26,7 @@ public class FourBar extends Subsystem {
   WPI_TalonSRX fourBarMotor = new WPI_TalonSRX(RobotMap.fourBarPort);
 
   // creating the encoder object 
-  ErrorCode fourBarEncoder = fourBarMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+
   
 
   @Override
@@ -36,18 +36,18 @@ public class FourBar extends Subsystem {
 
   // allowing the fourbar to raise
   public void raiseFourBar() {
-    fourBarMotor.set(-FOUR_BAR_SPEED);
+    fourBarMotor.set(ControlMode.PercentOutput, -FOUR_BAR_SPEED);
   }
 
 
   // allowing the fourbar to lower
   public void lowerFourBar() {
-    fourBarMotor.set(FOUR_BAR_SPEED);
+    fourBarMotor.set(ControlMode.PercentOutput, FOUR_BAR_SPEED);
   }
   
 
   // stops the fourbar
   public void stopFourBar() {
-    fourBarMotor.set(STOP_SPEED);
+    fourBarMotor.set(ControlMode.PercentOutput, STOP_SPEED);
   }
 }
