@@ -20,7 +20,7 @@ import frc.robot.RobotMap;
  */
 public class FourBar extends Subsystem {
 
-  public final double FOUR_BAR_SPEED = 0.65;
+  public final double FOUR_BAR_SPEED = 0.35;
   public final double STOP_SPEED = 0.00;
 
   // four-bar motor controller
@@ -40,9 +40,7 @@ public class FourBar extends Subsystem {
 
     // putting the fourbar in Brake mode
     fourBarMotor.setNeutralMode(NeutralMode.Brake);
-
-    double test = fourBarMotor.getSelectedSensorPosition();
-    System.out.println(test);
+    fourBarMotor.setInverted(true);
   }
 
   @Override
@@ -52,16 +50,21 @@ public class FourBar extends Subsystem {
 
   // allowing the fourbar to raise
   public void raiseFourBar() {
-    fourBarMotor.set(ControlMode.PercentOutput, -FOUR_BAR_SPEED);
+    fourBarMotor.set(ControlMode.PercentOutput, FOUR_BAR_SPEED);
   }
 
   // allowing the fourbar to lower
   public void lowerFourBar() {
-    fourBarMotor.set(ControlMode.PercentOutput, FOUR_BAR_SPEED);
+    fourBarMotor.set(ControlMode.PercentOutput, -FOUR_BAR_SPEED);
   }
   
   // stops the fourbar
   public void stopFourBar() {
     fourBarMotor.set(ControlMode.PercentOutput, STOP_SPEED);
+  }
+
+  public void getPosition() {
+    double test = fourBarMotor.getSelectedSensorPosition();
+    System.out.println(test);
   }
 }
