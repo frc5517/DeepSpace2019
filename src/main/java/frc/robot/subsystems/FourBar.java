@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -25,9 +26,24 @@ public class FourBar extends Subsystem {
   // four-bar motor controller
   WPI_TalonSRX fourBarMotor = new WPI_TalonSRX(RobotMap.fourBarPort);
 
-  // creating the encoder object 
+  public FourBar() {
 
-  
+    // setting the encoder to a TalonSRX Quadrature Encoder
+    fourBarMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+
+    /****************** PID VALUES ******************/
+    fourBarMotor.config_kP(/*slotIdx, value*/ 0, 0);
+    fourBarMotor.config_kI(/*slotIdx, value*/ 0, 0);
+    fourBarMotor.config_kD(/*slotIdx, value*/ 0, 0);
+    fourBarMotor.config_kF(/*slotIdx, value*/ 0, 0);
+    /***********************************************/
+
+    // putting the fourbar in Brake mode
+    fourBarMotor.setNeutralMode(NeutralMode.Brake);
+
+    double test = fourBarMotor.getSelectedSensorPosition();
+    System.out.println(test);
+  }
 
   @Override
   public void initDefaultCommand() {
@@ -39,13 +55,11 @@ public class FourBar extends Subsystem {
     fourBarMotor.set(ControlMode.PercentOutput, -FOUR_BAR_SPEED);
   }
 
-
   // allowing the fourbar to lower
   public void lowerFourBar() {
     fourBarMotor.set(ControlMode.PercentOutput, FOUR_BAR_SPEED);
   }
   
-
   // stops the fourbar
   public void stopFourBar() {
     fourBarMotor.set(ControlMode.PercentOutput, STOP_SPEED);
