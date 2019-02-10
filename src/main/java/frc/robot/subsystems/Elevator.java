@@ -7,7 +7,9 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -17,14 +19,13 @@ import frc.robot.RobotMap;
  */
 public class Elevator extends Subsystem {
 
-  public final double ELEVATOR_LIFT_SPEED = -0.65;
+  public final double ELEVATOR_LIFT_SPEED = 0.65;
   public final double ELEVATOR_LOWER_SPEED = 0.40;
   public final double ELEVATOR_CLIMB_SPEED = 1.00;
   public final double STOP_SPEED = 0.00;
 
-  
-  // elevator motor controller
-  WPI_VictorSPX elevatorMotor = new WPI_VictorSPX(RobotMap.elevatorPort);
+  // elevator motor controller2
+  WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(RobotMap.elevatorPort);
 
   @Override
   public void initDefaultCommand() {
@@ -33,20 +34,20 @@ public class Elevator extends Subsystem {
 
   // allows the elevator to be raised
   public void raiseElevator() {
-    elevatorMotor.set(ELEVATOR_LIFT_SPEED);
+    elevatorMotor.set(ControlMode.PercentOutput, -ELEVATOR_LIFT_SPEED);
   }
 
   // allows the elevator to be lowered
   public void lowerElevator() {
-    elevatorMotor.set(ELEVATOR_LOWER_SPEED);
+    elevatorMotor.set(ControlMode.PercentOutput, ELEVATOR_LOWER_SPEED);
   }
 
   public void lowerElevatorMaxSpeed() {
-    elevatorMotor.set(ELEVATOR_CLIMB_SPEED);
+    elevatorMotor.set(ControlMode.PercentOutput, ELEVATOR_LOWER_SPEED);
   }
   
   // stops the elevator
   public void stopElevator() {
-    elevatorMotor.set(STOP_SPEED);
+    elevatorMotor.set(ControlMode.PercentOutput, STOP_SPEED);
   }
 }

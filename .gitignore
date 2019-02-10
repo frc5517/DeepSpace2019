@@ -39,3 +39,4 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 # End of https://www.gitignore.io/api/java,gradle
+.settings/org.eclipse.jdt.core.prefs
