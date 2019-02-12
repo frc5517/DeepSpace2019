@@ -8,6 +8,8 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,10 +22,18 @@ public class CargoManiuplator extends Subsystem {
 
   public final double SPIN_SPEED = 0.75;
   public final double STOP_SPEED = 0;
-
   
   // cargo manipulator motor controllers
   public WPI_VictorSPX cargoManipulatorMotor = new WPI_VictorSPX(RobotMap.cargoManipulatorPort);
+
+  public CargoManiuplator() {
+
+    // putting the cargo manipulator in Brake mode
+    cargoManipulatorMotor.setNeutralMode(NeutralMode.Brake);
+
+    // inverting the cargo manipulator motor's output
+    // cargoManipulatorMotor.setInverted(true);
+  }
 
   @Override
   public void initDefaultCommand() {

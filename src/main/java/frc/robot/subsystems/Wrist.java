@@ -8,6 +8,8 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,10 +22,28 @@ public class Wrist extends Subsystem {
 
   public final double WRIST_SPEED = 0.30;
   public final double STOP_SPEED = 0.0;
-
   
   // wrist motor controller
   WPI_TalonSRX wristMotor = new WPI_TalonSRX(RobotMap.wristPort);
+
+  public Wrist() {
+
+    // setting the encoder to a TalonSRX Quadrature Encoder
+    wristMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+
+    /****************** PID VALUES ******************/
+    wristMotor.config_kP(/*slotIdx, value*/ 0, 0);
+    wristMotor.config_kI(/*slotIdx, value*/ 0, 0);
+    wristMotor.config_kD(/*slotIdx, value*/ 0, 0);
+    wristMotor.config_kF(/*slotIdx, value*/ 0, 0);
+    /***********************************************/
+
+    // putting the wrist in Brake mode
+    wristMotor.setNeutralMode(NeutralMode.Brake);
+
+    // inverting the wrist motor's output
+    // wristMotor.setInverted(true);
+  }
 
   @Override
   public void initDefaultCommand() {

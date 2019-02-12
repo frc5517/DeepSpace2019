@@ -8,6 +8,8 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -20,12 +22,30 @@ import frc.robot.RobotMap;
 public class Elevator extends Subsystem {
 
   public final double ELEVATOR_LIFT_SPEED = 0.65;
-  public final double ELEVATOR_LOWER_SPEED = 0.40;
-  public final double ELEVATOR_CLIMB_SPEED = 1.00;
+  public final double ELEVATOR_LOWER_SPEED = -0.40;
   public final double STOP_SPEED = 0.00;
 
   // elevator motor controller2
   WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(RobotMap.elevatorPort);
+
+  public Elevator() {
+
+    // setting the encoder to a TalonSRX Quadrature Encoder
+    elevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+
+    /****************** PID VALUES ******************/
+    elevatorMotor.config_kP(/*slotIdx, value*/ 0, 0);
+    elevatorMotor.config_kI(/*slotIdx, value*/ 0, 0);
+    elevatorMotor.config_kD(/*slotIdx, value*/ 0, 0);
+    elevatorMotor.config_kF(/*slotIdx, value*/ 0, 0);
+    /***********************************************/
+
+    // putting the elevator in Brake mode
+    elevatorMotor.setNeutralMode(NeutralMode.Brake);
+
+    // inverting the elevator motor's output
+    elevatorMotor.setInverted(true);
+  }
 
   @Override
   public void initDefaultCommand() {
@@ -34,7 +54,7 @@ public class Elevator extends Subsystem {
 
   // allows the elevator to be raised
   public void raiseElevator() {
-    elevatorMotor.set(ControlMode.PercentOutput, -ELEVATOR_LIFT_SPEED);
+    elevatorMotor.set(ControlMode.PercentOutput, ELEVATOR_LIFT_SPEED);
   }
 
   // allows the elevator to be lowered

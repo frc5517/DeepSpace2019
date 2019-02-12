@@ -40,6 +40,8 @@ public class FourBar extends Subsystem {
 
     // putting the fourbar in Brake mode
     fourBarMotor.setNeutralMode(NeutralMode.Brake);
+    
+    // inverting the fourbar motor's output
     fourBarMotor.setInverted(true);
   }
 
