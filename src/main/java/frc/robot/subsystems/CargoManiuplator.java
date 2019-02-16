@@ -23,15 +23,12 @@ public class CargoManiuplator extends Subsystem {
   public final double SPIN_SPEED = 0.75;
   public final double STOP_SPEED = 0.00;
   
-  // cargo manipulator motor controllers
   public WPI_VictorSPX cargoManipulatorMotor = new WPI_VictorSPX(RobotMap.cargoManipulatorPort);
 
   public CargoManiuplator() {
 
-    // putting the cargo manipulator in Brake mode
     cargoManipulatorMotor.setNeutralMode(NeutralMode.Brake);
 
-    // inverting the cargo manipulator motor's output
     // cargoManipulatorMotor.setInverted(true);
   }
 

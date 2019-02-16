@@ -26,28 +26,26 @@ public class Wrist extends Subsystem {
   // wrist motor controller
   WPI_TalonSRX wristMotor = new WPI_TalonSRX(RobotMap.wristPort);
 
+  /****************** PID VALUES ******************/
   private final int PID_SLOT_ID = 1;
   private final double kP = 0;
   private final double kI = 0;
   private final double kD = 0;
   private final double kF = 0;
+  /***********************************************/
 
   public Wrist() {
 
-    // setting the encoder to a TalonSRX Quadrature Encoder
+    // set the encoder to a TalonSRX Quadrature Encoder
     wristMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
 
-    /****************** PID VALUES ******************/
     wristMotor.config_kP(PID_SLOT_ID, kP);
     wristMotor.config_kI(PID_SLOT_ID, kI);
     wristMotor.config_kD(PID_SLOT_ID, kD);
     wristMotor.config_kF(PID_SLOT_ID, kF);
-    /***********************************************/
 
-    // putting the wrist in Brake mode
     wristMotor.setNeutralMode(NeutralMode.Brake);
 
-    // inverting the wrist motor's output
     // wristMotor.setInverted(true);
   }
 

@@ -42,7 +42,7 @@ public class Drivetrain extends Subsystem {
   }
 
   // stops the drivetrain
-  public void stopDriveMotors() {
+  public void stop() {
     drive.stopMotor();
   }
 }
