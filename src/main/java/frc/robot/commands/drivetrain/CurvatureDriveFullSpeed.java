@@ -23,8 +23,8 @@ public class CurvatureDriveFullSpeed extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.drivetrain.curvatureDrive(Robot.oi.getLeftX(), 
-                                    Robot.oi.getRightY());
+    Robot.drivetrain.curvatureDrive(Robot.oi.getRightJoystickY(),
+                                    Robot.oi.getLeftJoystickX());
   }
 
   // Make this return true when this Command no longer needs to run execute()
