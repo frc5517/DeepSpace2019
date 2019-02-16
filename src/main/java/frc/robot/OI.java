@@ -23,7 +23,6 @@ import frc.robot.commands.scoring_and_collecting.SetAllHighRocketPosition;
 import frc.robot.commands.scoring_and_collecting.SetAllLowRocketPosition;
 import frc.robot.commands.scoring_and_collecting.SetAllMiddleRocketPosition;
 import frc.robot.utilities.Gamepad;
-import frc.robot.utilities.JoystickAnalogButton;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -44,7 +43,6 @@ public class OI {
                 rightJoystickButtonOne, rightJoystickButtonTwo;
 
   // gamepad triggers as buttons
-  public JoystickAnalogButton leftOperatorTrigger, rightOperatorTrigger;
   
   public OI() {
 
@@ -52,9 +50,7 @@ public class OI {
     leftJoystickButtonTwo = new JoystickButton(leftJoystick, 2);
     rightJoystickButtonOne = new JoystickButton(rightJoystick, 1);
     rightJoystickButtonTwo = new JoystickButton(rightJoystick, 2);
-
-    leftOperatorTrigger = new JoystickAnalogButton(operatorGamepad, Gamepad.AXIS_LEFT_TRIGGER, 0.5);
-    rightOperatorTrigger = new JoystickAnalogButton(operatorGamepad, Gamepad.AXIS_RIGHT_TRIGGER, 0.5);
+    
     bindControls();
   }
   
@@ -74,9 +70,9 @@ public class OI {
 
     // operatorGamepad.getButtonY().whenPressed(new SetAllLowRocketPosition());
     // operatorGamepad.getRightShoulder().whenPressed(new SetAllMiddleRocketPosition());
-    // rightOperatorTrigger.whenPressed(new SetAllHighRocketPosition());
+    // operatorGamepad.getRightTrigger().whenPressed(new SetAllHighRocketPosition());
     // operatorGamepad.getLeftShoulder().whenPressed(new SetAllHatchCollectingPosition());
-    // leftOperatorTrigger.whenPressed(new SetAllCargoCollectingPosition());
+    // operatorGamepad.getLeftTrigger().whenPressed(new SetAllCargoCollectingPosition());
   }
 
   // controlling joysticks

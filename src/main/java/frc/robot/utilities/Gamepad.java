@@ -2,6 +2,7 @@ package frc.robot.utilities;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.utilities.JoystickAnalogButton;
 
 /**
  * Contains functions for use with the Logitech F310 controller.
@@ -124,12 +125,12 @@ public class Gamepad extends Joystick {
         return new JoystickButton(this, BUTTON_Y);
     }
     
-    public double getLeftTrigger() {
-        return getRawAxis(AXIS_LEFT_TRIGGER);
+    public JoystickAnalogButton getLeftTrigger() {
+        return new JoystickAnalogButton(this, BUTTON_TRIGGER_LEFT, 0.5);
     }
     
-    public double getRightTrigger() {
-        return getRawAxis(AXIS_RIGHT_TRIGGER);
+    public JoystickAnalogButton getRightTrigger() {
+        return new JoystickAnalogButton(this, BUTTON_TRIGGER_RIGHT, 0.5);
     }
 
     /**

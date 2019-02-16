@@ -51,8 +51,8 @@ public class JoystickAnalogButton extends Button {
    */
   public JoystickAnalogButton(Gamepad joystick, int axisNumber, double threshold) {
   	m_joystick = joystick;
-      m_axisNumber = axisNumber;
-      THRESHOLD = threshold;
+    m_axisNumber = axisNumber;
+    THRESHOLD = threshold;
   }
 
   /**
