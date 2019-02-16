@@ -5,14 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.wrist;
+package frc.robot.commands.hatchManipulator;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class MoveWrist extends Command {
-  public MoveWrist() {
-    requires(Robot.wrist);
+public class RetractHatchSolenoid extends Command {
+  public RetractHatchSolenoid() {
+    requires(Robot.hatchManipulator);
   }
 
   // Called just before this Command runs the first time
@@ -23,7 +23,7 @@ public class MoveWrist extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.wrist.moveWrist(Robot.oi.getOperatorGamepadLeftY());
+    Robot.hatchManipulator.hatchSolenoidReverse();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -35,7 +35,7 @@ public class MoveWrist extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.wrist.stopWristMotor();
+    Robot.hatchManipulator.stopHatchSolenoid();
   }
 
   // Called when another command which requires one or more of the same
