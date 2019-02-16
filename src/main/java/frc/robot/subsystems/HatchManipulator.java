@@ -16,7 +16,6 @@ import frc.robot.RobotMap;
  */
 public class HatchManipulator extends Subsystem {
   
-  
   // creating solenoid for scoring 
   DoubleSolenoid hatchSolenoid = new DoubleSolenoid(RobotMap.hatchSolenoidForwardPort,
                                                     RobotMap.hatchSolenoidReversePort);

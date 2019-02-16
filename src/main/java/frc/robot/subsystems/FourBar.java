@@ -24,6 +24,12 @@ public class Fourbar extends Subsystem {
   public final double FOUR_BAR_LOWER_SPEED = 0.4;
   public final double STOP_SPEED = 0.00;
 
+  private final int PID_SLOT_ID = 0;
+  private final double kP = 0;
+  private final double kI = 0;
+  private final double kD = 0;
+  private final double kF = 0;
+
   // four-bar motor controller
   WPI_TalonSRX fourbarMotor = new WPI_TalonSRX(RobotMap.fourBarPort);
 
@@ -33,10 +39,10 @@ public class Fourbar extends Subsystem {
     fourbarMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
 
     /****************** PID VALUES ******************/
-    fourbarMotor.config_kP(0, 0);
-    fourbarMotor.config_kI(0, 0);
-    fourbarMotor.config_kD(0, 0);
-    fourbarMotor.config_kF(0, 0);
+    fourbarMotor.config_kP(PID_SLOT_ID, kP);
+    fourbarMotor.config_kI(PID_SLOT_ID, kI);
+    fourbarMotor.config_kD(PID_SLOT_ID, kD);
+    fourbarMotor.config_kF(PID_SLOT_ID, kF);
     /***********************************************/
 
     // putting the fourbar in Brake mode

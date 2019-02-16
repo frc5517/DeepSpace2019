@@ -28,6 +28,12 @@ public class Elevator extends Subsystem {
   public final double PID_ELEVATOR_LIFT_SPEED = 0.80;
   public final double PID_ELEVATOR_LOWER_SPEED = -0.50;
 
+  private final int PID_SLOT_ID = 1;
+  private final double kP = 0;
+  private final double kI = 0;
+  private final double kD = 0;
+  private final double kF = 0;
+
   // elevator motor controller2
   WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(RobotMap.elevatorPort);
 
@@ -37,10 +43,10 @@ public class Elevator extends Subsystem {
     elevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
 
     /****************** PID VALUES ******************/
-    elevatorMotor.config_kP(2, 0);
-    elevatorMotor.config_kI(2, 0);
-    elevatorMotor.config_kD(2, 0);
-    elevatorMotor.config_kF(2, 0);
+    elevatorMotor.config_kP(PID_SLOT_ID, kP);
+    elevatorMotor.config_kI(PID_SLOT_ID, kI);
+    elevatorMotor.config_kD(PID_SLOT_ID, kD);
+    elevatorMotor.config_kF(PID_SLOT_ID, kF);
     /***********************************************/
 
     elevatorMotor.configNominalOutputForward(PID_ELEVATOR_LIFT_SPEED);
