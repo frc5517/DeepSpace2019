@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 /**
- * Four-bar FourBar that is used to score Cargo and Hatch Covers
+ * Fourbar that is used to score Cargo and Hatch Covers
  */
 public class Fourbar extends Subsystem {
 
