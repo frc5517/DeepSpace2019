@@ -12,8 +12,8 @@ import frc.robot.Robot;
 
 public class CurvatureDrive extends Command {
 
- private static final double rightMultiplier = -0.5;
-  private static final double leftMultipler = 0.55;
+ private static final double RIGHT_MULTIPLIER = -0.5;
+  private static final double LEFT_MULTIPLIER = 0.55;
 
   public CurvatureDrive() {
     requires(Robot.drivetrain);
@@ -27,8 +27,9 @@ public class CurvatureDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.drivetrain.curvatureDrive(Robot.oi.getRightY() * rightMultiplier, 
-                                    Robot.oi.getLeftX() * leftMultipler);
+    // if(Robot.oi.rightJoystickButtonOne.)
+    Robot.drivetrain.curvatureDrive(Robot.oi.getRightY() * RIGHT_MULTIPLIER, 
+                                    Robot.oi.getLeftX() * LEFT_MULTIPLIER);
   }
 
   // Make this return true when this Command no longer needs to run execute()
