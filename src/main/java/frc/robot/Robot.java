@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 // import frc.robot.commands.drivetrain.ArcadeDrive;
 import frc.robot.commands.drivetrain.CurvatureDrive;
-import frc.robot.subsystems.FourBar;
+import frc.robot.subsystems.Fourbar;
 import frc.robot.subsystems.CargoManiuplator;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
@@ -41,7 +41,7 @@ public class Robot extends TimedRobot {
 
   // initializing subsystems
   public static Drivetrain drivetrain = new Drivetrain();
-  public static FourBar fourBar = new FourBar();
+  public static Fourbar fourbar = new Fourbar();
   public static Elevator elevator = new Elevator();
   public static Wrist wrist = new Wrist();
   public static CargoManiuplator cargoManiuplator = new CargoManiuplator();
@@ -65,10 +65,10 @@ public class Robot extends TimedRobot {
 
     new Thread(() -> {
       UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-      camera.setResolution(640, 480);
+      camera.setResolution(480, 360);
       
       CvSink cvSink = CameraServer.getInstance().getVideo();
-      CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 640, 480);
+      CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 480, 360);
       
       Mat source = new Mat();
       Mat output = new Mat();

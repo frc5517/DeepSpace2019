@@ -23,7 +23,7 @@ public class SpinIntakeIn extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.cargoManiuplator.spinIntakeIn();
+    Robot.cargoManiuplator.spinCargoManipulatorIn();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -35,7 +35,7 @@ public class SpinIntakeIn extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.cargoManiuplator.stopIntake();
+    Robot.cargoManiuplator.stopCargoManipulatorMotor();
   }
 
   // Called when another command which requires one or more of the same

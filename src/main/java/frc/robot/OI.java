@@ -8,14 +8,20 @@
 package frc.robot;
 
 import frc.robot.RobotMap;
+import frc.robot.commands.cargoManipulator.SpinIntakeIn;
+import frc.robot.commands.cargoManipulator.SpinIntakeOut;
 import frc.robot.commands.drivetrain.CurvatureDrive;
-// import frc.robot.commands.drivetrain.CurvatureDriveFullSpeed;
-// import frc.robot.commands.elevator.LowerElevatorMaxSpeed;
-//import frc.robot.commands.elevator.LowerElevator;
-//import frc.robot.commands.elevator.RaiseElevator;
-import frc.robot.commands.fourBar.LowerFourBar;
-import frc.robot.commands.fourBar.RaiseFourBar;
-
+import frc.robot.commands.drivetrain.CurvatureDriveFullSpeed;
+import frc.robot.commands.elevator.LowerElevator;
+import frc.robot.commands.elevator.RaiseElevator;
+import frc.robot.commands.fourbar.LowerFourbar;
+import frc.robot.commands.fourbar.RaiseFourbar;
+import frc.robot.commands.scoring_and_collecting.ExtendAndRetractHatchManipulatorSolenoid;
+import frc.robot.commands.scoring_and_collecting.SetAllCargoCollectingPosition;
+import frc.robot.commands.scoring_and_collecting.SetAllHatchCollectingPosition;
+import frc.robot.commands.scoring_and_collecting.SetAllHighRocketPosition;
+import frc.robot.commands.scoring_and_collecting.SetAllLowRocketPosition;
+import frc.robot.commands.scoring_and_collecting.SetAllMiddleRocketPosition;
 import frc.robot.utilities.Gamepad;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -27,18 +33,47 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 
-  public OI() {
-    bindControls();
-  }
-
   // joysticks + gamepad
   public Joystick leftJoystick = new Joystick(RobotMap.leftJoystickPort);
   public Joystick rightJoystick = new Joystick(RobotMap.rightJoystickPort);
   public Gamepad operatorGamepad = new Gamepad(RobotMap.operatorGamepadPort);
 
   // joystick buttons
-  public Button rightJoystickButtonOne = new JoystickButton(rightJoystick, 1),
-                leftJoystickButtonTwo = new JoystickButton(leftJoystick, 1);
+  public Button leftJoystickButtonOne, leftJoystickButtonTwo, 
+                rightJoystickButtonOne, rightJoystickButtonTwo;
+
+  // gamepad triggers as buttons
+  
+  public OI() {
+
+    leftJoystickButtonOne = new JoystickButton(leftJoystick, 1);
+    leftJoystickButtonTwo = new JoystickButton(leftJoystick, 2);
+    rightJoystickButtonOne = new JoystickButton(rightJoystick, 1);
+    rightJoystickButtonTwo = new JoystickButton(rightJoystick, 2);
+    
+    bindControls();
+  }
+  
+  public void bindControls() {
+
+    // commands on driver joysticks
+    leftJoystickButtonOne.whileHeld(new SpinIntakeOut());
+    leftJoystickButtonTwo.whenPressed(new ExtendAndRetractHatchManipulatorSolenoid());
+    rightJoystickButtonOne.whileHeld(new SpinIntakeIn());
+    rightJoystickButtonTwo.toggleWhenActive(new CurvatureDriveFullSpeed());
+
+    // commands on operator gamepad
+    operatorGamepad.getRightShoulder().whileHeld(new RaiseElevator());
+    operatorGamepad.getLeftShoulder().whileHeld(new LowerElevator());
+    operatorGamepad.getButtonA().whileHeld(new RaiseFourbar());
+    operatorGamepad.getButtonB().whileHeld(new LowerFourbar());
+
+    // operatorGamepad.getButtonY().whenPressed(new SetAllLowRocketPosition());
+    // operatorGamepad.getRightShoulder().whenPressed(new SetAllMiddleRocketPosition());
+    // operatorGamepad.getRightTrigger().whenPressed(new SetAllHighRocketPosition());
+    // operatorGamepad.getLeftShoulder().whenPressed(new SetAllHatchCollectingPosition());
+    // operatorGamepad.getLeftTrigger().whenPressed(new SetAllCargoCollectingPosition());
+  }
 
   // controlling joysticks
   public Joystick getLeftJoystick() {
@@ -49,20 +84,27 @@ public class OI {
     return rightJoystick;
   }
 
-  public double getRightY() {
+  public Gamepad getOperatorGamepad() {
+    return operatorGamepad;
+  }
+
+  public double getRightJoystickY() {
     double y = rightJoystick.getY();
     return y;
   }
 
-  public double getLeftX() {
+  public double getLeftJoystickX() {
     double x = leftJoystick.getX();
     return x;
   }
 
-  public void bindControls() {
-    rightJoystickButtonOne.whileHeld(new CurvatureDrive());
-    operatorGamepad.getRightShoulder().whileHeld(new RaiseFourBar());
-    operatorGamepad.getLeftShoulder().whileHeld(new LowerFourBar());
-    // operatorGamepad.getStartButton().whileHeld(new LowerElevatorMaxSpeed());
+  public double getOperatorGamepadRightY() {
+    double y = operatorGamepad.getRightY();
+    return y;
+  }
+
+  public double getOperatorGamepadLeftY() {
+    double y = operatorGamepad.getLeftY();
+    return y;
   }
 }

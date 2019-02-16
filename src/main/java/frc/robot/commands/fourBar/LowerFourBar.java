@@ -5,14 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.fourBar;
+package frc.robot.commands.fourbar;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class LowerFourBar extends Command {
-  public LowerFourBar() {
-    requires(Robot.fourBar);
+public class LowerFourbar extends Command {
+  public LowerFourbar() {
+    requires(Robot.fourbar);
   }
 
   // Called just before this Command runs the first time
@@ -23,7 +23,7 @@ public class LowerFourBar extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.fourBar.lowerFourBar();
+    Robot.fourbar.lowerFourbar();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -35,7 +35,7 @@ public class LowerFourBar extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.fourBar.stopFourBar();
+    Robot.fourbar.stopFourbarMotor();
   }
 
   // Called when another command which requires one or more of the same

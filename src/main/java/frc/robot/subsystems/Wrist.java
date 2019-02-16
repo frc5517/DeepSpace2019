@@ -7,6 +7,9 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -19,28 +22,53 @@ public class Wrist extends Subsystem {
 
   public final double WRIST_SPEED = 0.30;
   public final double STOP_SPEED = 0.0;
-
   
   // wrist motor controller
   WPI_TalonSRX wristMotor = new WPI_TalonSRX(RobotMap.wristPort);
+
+  private final int PID_SLOT_ID = 1;
+  private final double kP = 0;
+  private final double kI = 0;
+  private final double kD = 0;
+  private final double kF = 0;
+
+  public Wrist() {
+
+    // setting the encoder to a TalonSRX Quadrature Encoder
+    wristMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+
+    /****************** PID VALUES ******************/
+    wristMotor.config_kP(PID_SLOT_ID, kP);
+    wristMotor.config_kI(PID_SLOT_ID, kI);
+    wristMotor.config_kD(PID_SLOT_ID, kD);
+    wristMotor.config_kF(PID_SLOT_ID, kF);
+    /***********************************************/
+
+    // putting the wrist in Brake mode
+    wristMotor.setNeutralMode(NeutralMode.Brake);
+
+    // inverting the wrist motor's output
+    // wristMotor.setInverted(true);
+  }
 
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(null);
   }
 
-  // allows the wrist to raise
-  public void raiseWrist() {
-    wristMotor.set(WRIST_SPEED);
+  // allows the wrist to be moved based on joystick input
+  public void moveWrist(double speed) {
+    wristMotor.set(ControlMode.PercentOutput, speed);
   }
 
-  // allows the wrist to lower
-  public void lowerWrist() {
-    wristMotor.set(-WRIST_SPEED);
+  // allows the wrist to be set to different positions based on
+  // sensor values
+  public void setWristSetpoint(int setpoint) {
+    wristMotor.setSelectedSensorPosition(setpoint);
   }
   
   // stops the elevator
-  public void stopWrist() {
-    wristMotor.set(STOP_SPEED);
+  public void stopWristMotor() {
+    wristMotor.set(ControlMode.PercentOutput, STOP_SPEED);
   }
 }

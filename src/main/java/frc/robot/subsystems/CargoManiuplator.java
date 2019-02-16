@@ -7,7 +7,10 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -18,11 +21,19 @@ import frc.robot.RobotMap;
 public class CargoManiuplator extends Subsystem {
 
   public final double SPIN_SPEED = 0.75;
-  public final double STOP_SPEED = 0;
-
+  public final double STOP_SPEED = 0.00;
   
   // cargo manipulator motor controllers
-  public WPI_TalonSRX cargoManipulatorMotor = new WPI_TalonSRX(RobotMap.cargoManipulatorPort);
+  public WPI_VictorSPX cargoManipulatorMotor = new WPI_VictorSPX(RobotMap.cargoManipulatorPort);
+
+  public CargoManiuplator() {
+
+    // putting the cargo manipulator in Brake mode
+    cargoManipulatorMotor.setNeutralMode(NeutralMode.Brake);
+
+    // inverting the cargo manipulator motor's output
+    // cargoManipulatorMotor.setInverted(true);
+  }
 
   @Override
   public void initDefaultCommand() {
@@ -30,17 +41,17 @@ public class CargoManiuplator extends Subsystem {
   }
 
   // allows the robot to intake cargo
-  public void spinIntakeIn() {
-    cargoManipulatorMotor.set(SPIN_SPEED);
+  public void spinCargoManipulatorIn() {
+    cargoManipulatorMotor.set(ControlMode.PercentOutput, SPIN_SPEED);
   }
 
   // allows the robot to score cargo
-  public void spinIntakeOut() {
-    cargoManipulatorMotor.set(-SPIN_SPEED);
+  public void spinCargoManipulatorOut() {
+    cargoManipulatorMotor.set(ControlMode.PercentOutput, -SPIN_SPEED);
   }
   
-  // stops the intake 
-  public void stopIntake() {
-    cargoManipulatorMotor.set(STOP_SPEED);
+  // stops the CargoManipulator 
+  public void stopCargoManipulatorMotor() {
+    cargoManipulatorMotor.set(ControlMode.PercentOutput, STOP_SPEED);
   }
 }

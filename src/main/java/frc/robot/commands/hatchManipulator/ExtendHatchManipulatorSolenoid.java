@@ -5,14 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.elevator;
+package frc.robot.commands.hatchManipulator;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class RaiseElevator extends Command {
-  public RaiseElevator() {
-    requires(Robot.elevator);
+public class ExtendHatchManipulatorSolenoid extends Command {
+  public ExtendHatchManipulatorSolenoid() {
+    requires(Robot.hatchManipulator);
   }
 
   // Called just before this Command runs the first time
@@ -23,7 +23,7 @@ public class RaiseElevator extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.elevator.raiseElevator();
+    Robot.hatchManipulator.hatchSolenoidForward();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -35,7 +35,7 @@ public class RaiseElevator extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.elevator.stopElevatorMotor();
+    Robot.hatchManipulator.stopHatchSolenoid();
   }
 
   // Called when another command which requires one or more of the same

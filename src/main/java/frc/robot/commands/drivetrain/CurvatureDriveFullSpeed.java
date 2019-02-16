@@ -5,14 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.elevator;
+package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class RaiseElevator extends Command {
-  public RaiseElevator() {
-    requires(Robot.elevator);
+public class CurvatureDriveFullSpeed extends Command {
+  public CurvatureDriveFullSpeed() {
+    requires(Robot.drivetrain);
   }
 
   // Called just before this Command runs the first time
@@ -23,7 +23,8 @@ public class RaiseElevator extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.elevator.raiseElevator();
+    Robot.drivetrain.curvatureDrive(Robot.oi.getRightJoystickY(),
+                                    Robot.oi.getLeftJoystickX());
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -35,13 +36,11 @@ public class RaiseElevator extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.elevator.stopElevatorMotor();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }

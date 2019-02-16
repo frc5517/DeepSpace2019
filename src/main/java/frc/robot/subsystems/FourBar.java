@@ -7,8 +7,9 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.ErrorCode;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -17,17 +18,39 @@ import frc.robot.RobotMap;
 /**
  * Four-bar FourBar that is used to score Cargo and Hatch Covers
  */
-public class FourBar extends Subsystem {
+public class Fourbar extends Subsystem {
 
-  public final double FOUR_BAR_SPEED = 0.65;
+  public final double FOUR_BAR_LIFT_SPEED = 0.6;
+  public final double FOUR_BAR_LOWER_SPEED = 0.4;
   public final double STOP_SPEED = 0.00;
 
-  // four-bar motor controller
-  WPI_TalonSRX fourBarMotor = new WPI_TalonSRX(RobotMap.fourBarPort);
+  private final int PID_SLOT_ID = 0;
+  private final double kP = 0;
+  private final double kI = 0;
+  private final double kD = 0;
+  private final double kF = 0;
 
-  // creating the encoder object 
-  ErrorCode fourBarEncoder = fourBarMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
-  
+  // four-bar motor controller
+  WPI_TalonSRX fourbarMotor = new WPI_TalonSRX(RobotMap.fourBarPort);
+
+  public Fourbar() {
+
+    // setting the encoder to a TalonSRX Quadrature Encoder
+    fourbarMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+
+    /****************** PID VALUES ******************/
+    fourbarMotor.config_kP(PID_SLOT_ID, kP);
+    fourbarMotor.config_kI(PID_SLOT_ID, kI);
+    fourbarMotor.config_kD(PID_SLOT_ID, kD);
+    fourbarMotor.config_kF(PID_SLOT_ID, kF);
+    /***********************************************/
+
+    // putting the fourbar in Brake mode
+    fourbarMotor.setNeutralMode(NeutralMode.Brake);
+    
+    // inverting the fourbar motor's output
+    fourbarMotor.setInverted(true);
+  }
 
   @Override
   public void initDefaultCommand() {
@@ -35,19 +58,23 @@ public class FourBar extends Subsystem {
   }
 
   // allowing the fourbar to raise
-  public void raiseFourBar() {
-    fourBarMotor.set(-FOUR_BAR_SPEED);
+  public void raiseFourbar() {
+    fourbarMotor.set(ControlMode.PercentOutput, FOUR_BAR_LIFT_SPEED);
   }
-
 
   // allowing the fourbar to lower
-  public void lowerFourBar() {
-    fourBarMotor.set(FOUR_BAR_SPEED);
+  public void lowerFourbar() {
+    fourbarMotor.set(ControlMode.PercentOutput, FOUR_BAR_LOWER_SPEED);
   }
   
-
   // stops the fourbar
-  public void stopFourBar() {
-    fourBarMotor.set(STOP_SPEED);
+  public void stopFourbarMotor() {
+    fourbarMotor.set(ControlMode.PercentOutput, STOP_SPEED);
+  }
+
+  // allows the fourbar to be set to different positions based on
+  // sensor values
+  public void setFourbarSetpoint(int setpoint) {
+    fourbarMotor.setSelectedSensorPosition(setpoint);
   }
 }
