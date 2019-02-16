@@ -10,8 +10,11 @@ package frc.robot.commands.elevator;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class LowerElevatorMaxSpeed extends Command {
-  public LowerElevatorMaxSpeed() {
+public class SetElevatorSetpoint extends Command {
+
+  private int setpoint;
+
+  public SetElevatorSetpoint(int setpoint) {
     requires(Robot.elevator);
   }
 
@@ -23,7 +26,7 @@ public class LowerElevatorMaxSpeed extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.elevator.lowerElevatorMaxSpeed();
+    // Robot.elevator.setElevatorSetpoint(setpoint);
   }
 
   // Make this return true when this Command no longer needs to run execute()

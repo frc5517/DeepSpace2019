@@ -20,8 +20,9 @@ import frc.robot.RobotMap;
  */
 public class FourBar extends Subsystem {
 
-  public final double FOUR_BAR_SPEED = 0.35;
+  public final double FOUR_BAR_SPEED = 0.5;
   public final double STOP_SPEED = 0.00;
+  public int setpoint = 0;
 
   // four-bar motor controller
   WPI_TalonSRX fourBarMotor = new WPI_TalonSRX(RobotMap.fourBarPort);
@@ -29,13 +30,13 @@ public class FourBar extends Subsystem {
   public FourBar() {
 
     // setting the encoder to a TalonSRX Quadrature Encoder
-    fourBarMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+    // fourBarMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
 
     /****************** PID VALUES ******************/
-    fourBarMotor.config_kP(/*slotIdx, value*/ 0, 0);
-    fourBarMotor.config_kI(/*slotIdx, value*/ 0, 0);
-    fourBarMotor.config_kD(/*slotIdx, value*/ 0, 0);
-    fourBarMotor.config_kF(/*slotIdx, value*/ 0, 0);
+    // fourBarMotor.config_kP(/*slotIdx, value*/ 0, 0);
+    // fourBarMotor.config_kI(/*slotIdx, value*/ 0, 0);
+    // fourBarMotor.config_kD(/*slotIdx, value*/ 0, 0);
+    // fourBarMotor.config_kF(/*slotIdx, value*/ 0, 0);
     /***********************************************/
 
     // putting the fourbar in Brake mode
@@ -65,8 +66,9 @@ public class FourBar extends Subsystem {
     fourBarMotor.set(ControlMode.PercentOutput, STOP_SPEED);
   }
 
-  public void getPosition() {
-    double test = fourBarMotor.getSelectedSensorPosition();
-    System.out.println(test);
+  // allows the fourbar to be set to different positions based on
+  // sensor values
+  public void setFourBarSetpoint() {
+    fourBarMotor.setSelectedSensorPosition(setpoint);
   }
 }

@@ -25,20 +25,26 @@ public class Elevator extends Subsystem {
   public final double ELEVATOR_LOWER_SPEED = -0.40;
   public final double STOP_SPEED = 0.00;
 
+  public final double PID_ELEVATOR_LIFT_SPEED = 0.80;
+  public final double PID_ELEVATOR_LOWER_SPEED = -0.50;
+
   // elevator motor controller2
   WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(RobotMap.elevatorPort);
 
   public Elevator() {
 
     // setting the encoder to a TalonSRX Quadrature Encoder
-    elevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+    // elevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
 
     /****************** PID VALUES ******************/
-    elevatorMotor.config_kP(/*slotIdx, value*/ 0, 0);
-    elevatorMotor.config_kI(/*slotIdx, value*/ 0, 0);
-    elevatorMotor.config_kD(/*slotIdx, value*/ 0, 0);
-    elevatorMotor.config_kF(/*slotIdx, value*/ 0, 0);
+    // elevatorMotor.config_kP(/*slotIdx, value*/ 0, 0);
+    // elevatorMotor.config_kI(/*slotIdx, value*/ 0, 0);
+    // elevatorMotor.config_kD(/*slotIdx, value*/ 0, 0);
+    // elevatorMotor.config_kF(/*slotIdx, value*/ 0, 0);
     /***********************************************/
+
+    // elevatorMotor.configNominalOutputForward(PID_ELEVATOR_LIFT_SPEED);
+    // elevatorMotor.configNominalOutputReverse(PID_ELEVATOR_LOWER_SPEED);
 
     // putting the elevator in Brake mode
     elevatorMotor.setNeutralMode(NeutralMode.Brake);
@@ -62,9 +68,11 @@ public class Elevator extends Subsystem {
     elevatorMotor.set(ControlMode.PercentOutput, ELEVATOR_LOWER_SPEED);
   }
 
-  public void lowerElevatorMaxSpeed() {
-    elevatorMotor.set(ControlMode.PercentOutput, ELEVATOR_LOWER_SPEED);
-  }
+  // allows the wrist to be set to different positions based on
+  // sensor values
+  // public void setElevatorSetpoint(int setpoint) {
+  //   elevatorMotor.setSelectedSensorPosition(setpoint);
+  // }
   
   // stops the elevator
   public void stopElevator() {
