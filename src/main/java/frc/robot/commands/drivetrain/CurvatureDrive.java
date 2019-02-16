@@ -11,6 +11,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class CurvatureDrive extends Command {
+
+ private static final double rightMultiplier = -0.5;
+  private static final double leftMultipler = 0.55;
+
   public CurvatureDrive() {
     requires(Robot.drivetrain);
   }
@@ -19,12 +23,12 @@ public class CurvatureDrive extends Command {
   @Override
   protected void initialize() {
   }
-
+ 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.drivetrain.curvatureDrive(Robot.oi.getRightY() * -0.75, 
-                                    Robot.oi.getLeftX() * 0.75);
+    Robot.drivetrain.curvatureDrive(Robot.oi.getRightY() * rightMultiplier, 
+                                    Robot.oi.getLeftX() * leftMultipler);
   }
 
   // Make this return true when this Command no longer needs to run execute()
