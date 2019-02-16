@@ -22,7 +22,6 @@ public class Wrist extends Subsystem {
 
   public final double WRIST_SPEED = 0.30;
   public final double STOP_SPEED = 0.0;
-  public int setpoint = 0;
   
   // wrist motor controller
   WPI_TalonSRX wristMotor = new WPI_TalonSRX(RobotMap.wristPort);
@@ -30,13 +29,13 @@ public class Wrist extends Subsystem {
   public Wrist() {
 
     // setting the encoder to a TalonSRX Quadrature Encoder
-    // wristMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+    wristMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
 
     /****************** PID VALUES ******************/
-    // wristMotor.config_kP(/*slotIdx, value*/ 0, 0);
-    // wristMotor.config_kI(/*slotIdx, value*/ 0, 0);
-    // wristMotor.config_kD(/*slotIdx, value*/ 0, 0);
-    // wristMotor.config_kF(/*slotIdx, value*/ 0, 0);
+    wristMotor.config_kP(1, 0);
+    wristMotor.config_kI(1, 0);
+    wristMotor.config_kD(1, 0);
+    wristMotor.config_kF(1, 0);
     /***********************************************/
 
     // putting the wrist in Brake mode
@@ -51,24 +50,19 @@ public class Wrist extends Subsystem {
     setDefaultCommand(null);
   }
 
-  // allows the wrist to raise
-  public void raiseWrist() {
-    wristMotor.set(ControlMode.PercentOutput, WRIST_SPEED);
-  }
-
-  // allows the wrist to lower
-  public void lowerWrist() {
-    wristMotor.set(ControlMode.PercentOutput, -WRIST_SPEED);
+  // allows the wrist to be moved based on joystick input
+  public void moveWrist(double speed) {
+    wristMotor.set(ControlMode.PercentOutput, speed);
   }
 
   // allows the wrist to be set to different positions based on
   // sensor values
-  public void setWristSetpoint() {
+  public void setWristSetpoint(int setpoint) {
     wristMotor.setSelectedSensorPosition(setpoint);
   }
   
   // stops the elevator
-  public void stopWrist() {
+  public void stopWristMotor() {
     wristMotor.set(ControlMode.PercentOutput, STOP_SPEED);
   }
 }

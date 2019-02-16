@@ -21,7 +21,7 @@ import frc.robot.RobotMap;
 public class CargoManiuplator extends Subsystem {
 
   public final double SPIN_SPEED = 0.75;
-  public final double STOP_SPEED = 0;
+  public final double STOP_SPEED = 0.00;
   
   // cargo manipulator motor controllers
   public WPI_VictorSPX cargoManipulatorMotor = new WPI_VictorSPX(RobotMap.cargoManipulatorPort);
@@ -41,17 +41,17 @@ public class CargoManiuplator extends Subsystem {
   }
 
   // allows the robot to intake cargo
-  public void spinIntakeIn() {
+  public void spinCargoManipulatorIn() {
     cargoManipulatorMotor.set(ControlMode.PercentOutput, SPIN_SPEED);
   }
 
   // allows the robot to score cargo
-  public void spinIntakeOut() {
+  public void spinCargoManipulatorOut() {
     cargoManipulatorMotor.set(ControlMode.PercentOutput, -SPIN_SPEED);
   }
   
-  // stops the intake 
-  public void stopIntake() {
+  // stops the CargoManipulator 
+  public void stopCargoManipulatorMotor() {
     cargoManipulatorMotor.set(ControlMode.PercentOutput, STOP_SPEED);
   }
 }

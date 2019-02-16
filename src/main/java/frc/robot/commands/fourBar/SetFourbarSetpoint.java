@@ -5,14 +5,17 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.wrist;
+package frc.robot.commands.fourbar;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class LowerWrist extends Command {
-  public LowerWrist() {
-    requires(Robot.wrist);
+public class SetFourbarSetpoint extends Command {
+
+  private int setpoint;
+
+  public SetFourbarSetpoint(int setpoint) {
+    requires(Robot.fourbar);
   }
 
   // Called just before this Command runs the first time
@@ -23,7 +26,7 @@ public class LowerWrist extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.wrist.lowerWrist();
+    Robot.fourbar.setFourbarSetpoint(setpoint);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -35,7 +38,7 @@ public class LowerWrist extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.wrist.stopWrist();
+    Robot.fourbar.stopFourbarMotor();
   }
 
   // Called when another command which requires one or more of the same

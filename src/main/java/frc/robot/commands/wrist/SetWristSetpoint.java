@@ -5,14 +5,17 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.drivetrain;
+package frc.robot.commands.wrist;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class CurvatureDrive extends Command {
-  public CurvatureDrive() {
-    requires(Robot.drivetrain);
+public class SetWristSetpoint extends Command {
+
+  private int setpoint;
+
+  public SetWristSetpoint(int setpoint) {
+    requires(Robot.wrist);
   }
 
   // Called just before this Command runs the first time
@@ -23,8 +26,7 @@ public class CurvatureDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.drivetrain.curvatureDrive(Robot.oi.getRightJoystickY(), 
-                                    Robot.oi.getLeftJoystickX());
+    Robot.wrist.setWristSetpoint(setpoint);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -36,7 +38,7 @@ public class CurvatureDrive extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.drivetrain.stopDriveMotors();
+    Robot.wrist.stopWristMotor();
   }
 
   // Called when another command which requires one or more of the same

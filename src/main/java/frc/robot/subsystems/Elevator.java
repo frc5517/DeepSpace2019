@@ -34,17 +34,17 @@ public class Elevator extends Subsystem {
   public Elevator() {
 
     // setting the encoder to a TalonSRX Quadrature Encoder
-    // elevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+    elevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
 
     /****************** PID VALUES ******************/
-    // elevatorMotor.config_kP(/*slotIdx, value*/ 0, 0);
-    // elevatorMotor.config_kI(/*slotIdx, value*/ 0, 0);
-    // elevatorMotor.config_kD(/*slotIdx, value*/ 0, 0);
-    // elevatorMotor.config_kF(/*slotIdx, value*/ 0, 0);
+    elevatorMotor.config_kP(2, 0);
+    elevatorMotor.config_kI(2, 0);
+    elevatorMotor.config_kD(2, 0);
+    elevatorMotor.config_kF(2, 0);
     /***********************************************/
 
-    // elevatorMotor.configNominalOutputForward(PID_ELEVATOR_LIFT_SPEED);
-    // elevatorMotor.configNominalOutputReverse(PID_ELEVATOR_LOWER_SPEED);
+    elevatorMotor.configNominalOutputForward(PID_ELEVATOR_LIFT_SPEED);
+    elevatorMotor.configNominalOutputReverse(PID_ELEVATOR_LOWER_SPEED);
 
     // putting the elevator in Brake mode
     elevatorMotor.setNeutralMode(NeutralMode.Brake);
@@ -70,12 +70,12 @@ public class Elevator extends Subsystem {
 
   // allows the wrist to be set to different positions based on
   // sensor values
-  // public void setElevatorSetpoint(int setpoint) {
-  //   elevatorMotor.setSelectedSensorPosition(setpoint);
-  // }
+  public void setElevatorSetpoint(int setpoint) {
+    elevatorMotor.setSelectedSensorPosition(setpoint);
+  }
   
   // stops the elevator
-  public void stopElevator() {
+  public void stopElevatorMotor() {
     elevatorMotor.set(ControlMode.PercentOutput, STOP_SPEED);
   }
 }

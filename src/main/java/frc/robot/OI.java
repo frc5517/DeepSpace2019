@@ -13,10 +13,13 @@ import frc.robot.commands.drivetrain.CurvatureDriveFullSpeed;
 // import frc.robot.commands.elevator.LowerElevatorMaxSpeed;
 import frc.robot.commands.elevator.LowerElevator;
 import frc.robot.commands.elevator.RaiseElevator;
-import frc.robot.commands.elevator.SetElevatorSetpoint;
-import frc.robot.commands.fourBar.LowerFourBar;
-import frc.robot.commands.fourBar.RaiseFourBar;
-
+import frc.robot.commands.fourbar.LowerFourbar;
+import frc.robot.commands.fourbar.RaiseFourbar;
+import frc.robot.commands.scoring_and_collecting.SetAllCargoCollectingPosition;
+import frc.robot.commands.scoring_and_collecting.SetAllHatchCollectingPosition;
+import frc.robot.commands.scoring_and_collecting.SetAllHighRocketPosition;
+import frc.robot.commands.scoring_and_collecting.SetAllLowRocketPosition;
+import frc.robot.commands.scoring_and_collecting.SetAllMiddleRocketPosition;
 import frc.robot.utilities.Gamepad;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -50,13 +53,27 @@ public class OI {
     return rightJoystick;
   }
 
-  public double getRightY() {
+  public Gamepad getOperatorGamepad() {
+    return operatorGamepad;
+  }
+
+  public double getRightJoystickY() {
     double y = rightJoystick.getY();
     return y;
   }
 
-  public double getLeftX() {
+  public double getLeftJoystickX() {
     double x = leftJoystick.getX();
+    return x;
+  }
+
+  public double getOperatorGamepadRightY() {
+    double y = operatorGamepad.getRightY();
+    return y;
+  }
+
+  public double getOperatorGamepadLeftX() {
+    double x = operatorGamepad.getLeftX();
     return x;
   }
 
@@ -65,8 +82,14 @@ public class OI {
 
     operatorGamepad.getRightShoulder().whileHeld(new RaiseElevator());
     operatorGamepad.getLeftShoulder().whileHeld(new LowerElevator());
-    operatorGamepad.getButtonA().whileHeld(new RaiseFourBar());
-    operatorGamepad.getButtonB().whileHeld(new LowerFourBar());
-    // operatorGamepad.getButtonA().whenReleased(new SetElevatorSetpoint(0));
+    operatorGamepad.getButtonA().whileHeld(new RaiseFourbar());
+    operatorGamepad.getButtonB().whileHeld(new LowerFourbar());
+
+    // operatorGamepad.getButtonY().whenPressed(new SetAllCargoCollectingPosition());
+    // operatorGamepad.getButtonX().whenPressed(new SetAllHatchCollectingPosition());
+    // operatorGamepad.getRightShoulder().whenPressed(new SetAllLowRocketPosition());
+    // operatorGamepad.getLeftBumper().whenPressed(new SetAllMiddleRocketPosition());
+    // operatorGamepad.getButtonA().whenPressed(new SetAllHighRocketPosition());
+    
   }
 }
