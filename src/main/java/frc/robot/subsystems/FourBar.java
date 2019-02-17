@@ -16,12 +16,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 /**
- * Four-bar FourBar that is used to score Cargo and Hatch Covers
+ * Fourbar that is used to score Cargo and Hatch Covers
  */
 public class Fourbar extends Subsystem {
 
   public final double FOUR_BAR_LIFT_SPEED = 0.6;
-  public final double FOUR_BAR_LOWER_SPEED = 0.4;
+  public final double FOUR_BAR_LOWER_SPEED = -0.4;
   public final double STOP_SPEED = 0.00;
 
   /****************** PID VALUES ******************/
