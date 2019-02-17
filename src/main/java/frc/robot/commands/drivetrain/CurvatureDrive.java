@@ -27,7 +27,7 @@ public class CurvatureDrive extends Command {
   @Override
   protected void execute() {
 
-    double speed = Robot.oi.getRightJoystickY() * 
+    double speed = -Robot.oi.getRightJoystickY() * 
       (Robot.oi.isFullSpeedActivated() ? FULL_SPEED_MULTIPLIER : REGULAR_SPEED_MULTIPLIER);
 
     double rotation = Robot.oi.getLeftJoystickX() * ROTATION_MULTIPLIER;
