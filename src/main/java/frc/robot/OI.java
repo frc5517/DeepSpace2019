@@ -40,9 +40,9 @@ public class OI {
   public void bindControls() {
 
     // Driver Commands
-    leftJoystick.getTriggerButton().whileHeld(new SpinIntakeOut());
+    leftJoystick.getTriggerJoystickButton().whileHeld(new SpinIntakeOut());
     leftJoystick.getJoystickButton(2).whenPressed(new ExtendAndRetractHatchManipulatorSolenoid());
-    rightJoystick.getTriggerButton().whileHeld(new SpinIntakeIn());
+    rightJoystick.getTriggerJoystickButton().whileHeld(new SpinIntakeIn());
 
     // Operator Commands
     operatorGamepad.getRightShoulder().whileHeld(new RaiseElevator());
@@ -58,7 +58,7 @@ public class OI {
   }
 
   public boolean isFullSpeedActivated() {
-    return rightJoystick.getRawButtonPressed(2);
+    return rightJoystick.isTriggerPressed();
   }
 
   public LogitechJoystick getLeftJoystick() {
