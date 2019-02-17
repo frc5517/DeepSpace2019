@@ -21,7 +21,7 @@ import frc.robot.RobotMap;
 public class Fourbar extends Subsystem {
 
   public final double FOUR_BAR_LIFT_SPEED = 0.6;
-  public final double FOUR_BAR_LOWER_SPEED = 0.4;
+  public final double FOUR_BAR_LOWER_SPEED = -0.4;
   public final double STOP_SPEED = 0.00;
 
   /****************** PID VALUES ******************/
