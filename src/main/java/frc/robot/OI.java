@@ -40,9 +40,9 @@ public class OI {
   public void bindControls() {
 
     // Driver Commands
-    leftJoystick.getTriggerJoystickButton().whileHeld(new SpinIntakeOut());
-    leftJoystick.getJoystickButton(2).whenPressed(new ExtendAndRetractHatchManipulatorSolenoid());
-    rightJoystick.getTriggerJoystickButton().whileHeld(new SpinIntakeIn());
+    leftJoystick.getJoystickTrigger().whileHeld(new SpinIntakeOut());
+    leftJoystick.getJoystickButton(LogitechJoystick.BUTTON_2).whenPressed(new ExtendAndRetractHatchManipulatorSolenoid());
+    rightJoystick.getJoystickTrigger().whileHeld(new SpinIntakeIn());
 
     // Operator Commands
     operatorGamepad.getRightShoulder().whileHeld(new RaiseElevator());
