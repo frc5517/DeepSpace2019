@@ -10,8 +10,6 @@ package frc.robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.cargoManipulator.SpinIntakeIn;
 import frc.robot.commands.cargoManipulator.SpinIntakeOut;
-import frc.robot.commands.drivetrain.CurvatureDrive;
-import frc.robot.commands.drivetrain.CurvatureDriveFullSpeed;
 import frc.robot.commands.elevator.LowerElevator;
 import frc.robot.commands.elevator.RaiseElevator;
 import frc.robot.commands.fourbar.LowerFourbar;
@@ -23,9 +21,7 @@ import frc.robot.commands.scoring_and_collecting.SetAllHighRocketPosition;
 import frc.robot.commands.scoring_and_collecting.SetAllLowRocketPosition;
 import frc.robot.commands.scoring_and_collecting.SetAllMiddleRocketPosition;
 import frc.robot.utilities.Gamepad;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.utilities.LogitechJoystick;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -33,36 +29,22 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 
-  // joysticks + gamepad
-  public Joystick leftJoystick = new Joystick(RobotMap.leftJoystickPort);
-  public Joystick rightJoystick = new Joystick(RobotMap.rightJoystickPort);
+  public LogitechJoystick leftJoystick = new LogitechJoystick(RobotMap.leftJoystickPort);
+  public LogitechJoystick rightJoystick = new LogitechJoystick(RobotMap.rightJoystickPort);
   public Gamepad operatorGamepad = new Gamepad(RobotMap.operatorGamepadPort);
 
-  // joystick buttons
-  public Button leftJoystickButtonOne, leftJoystickButtonTwo, 
-                rightJoystickButtonOne, rightJoystickButtonTwo;
-
-  // gamepad triggers as buttons
-  
   public OI() {
-
-    leftJoystickButtonOne = new JoystickButton(leftJoystick, 1);
-    leftJoystickButtonTwo = new JoystickButton(leftJoystick, 2);
-    rightJoystickButtonOne = new JoystickButton(rightJoystick, 1);
-    rightJoystickButtonTwo = new JoystickButton(rightJoystick, 2);
-    
     bindControls();
   }
   
   public void bindControls() {
 
-    // commands on driver joysticks
-    leftJoystickButtonOne.whileHeld(new SpinIntakeOut());
-    leftJoystickButtonTwo.whenPressed(new ExtendAndRetractHatchManipulatorSolenoid());
-    rightJoystickButtonOne.whileHeld(new SpinIntakeIn());
-    rightJoystickButtonTwo.toggleWhenActive(new CurvatureDriveFullSpeed());
+    // Driver Commands
+    leftJoystick.getTriggerButton().whileHeld(new SpinIntakeOut());
+    leftJoystick.getJoystickButton(2).whenPressed(new ExtendAndRetractHatchManipulatorSolenoid());
+    rightJoystick.getTriggerButton().whileHeld(new SpinIntakeIn());
 
-    // commands on operator gamepad
+    // Operator Commands
     operatorGamepad.getRightShoulder().whileHeld(new RaiseElevator());
     operatorGamepad.getLeftShoulder().whileHeld(new LowerElevator());
     operatorGamepad.getButtonA().whileHeld(new RaiseFourbar());
@@ -75,12 +57,15 @@ public class OI {
     // operatorGamepad.getLeftTrigger().whenPressed(new SetAllCargoCollectingPosition());
   }
 
-  // controlling joysticks
-  public Joystick getLeftJoystick() {
+  public boolean isFullSpeedActivated() {
+    return rightJoystick.getRawButtonPressed(2);
+  }
+
+  public LogitechJoystick getLeftJoystick() {
     return leftJoystick;
   }
 
-  public Joystick getRightJoystick() {
+  public LogitechJoystick getRightJoystick() {
     return rightJoystick;
   }
 
@@ -88,18 +73,13 @@ public class OI {
     return operatorGamepad;
   }
 
-  public double getRightJoystickY() {
-    double y = rightJoystick.getY();
-    return y;
-  }
-
   public double getLeftJoystickX() {
     double x = leftJoystick.getX();
     return x;
   }
 
-  public double getOperatorGamepadRightY() {
-    double y = operatorGamepad.getRightY();
+  public double getRightJoystickY() {
+    double y = rightJoystick.getY();
     return y;
   }
 
@@ -107,4 +87,10 @@ public class OI {
     double y = operatorGamepad.getLeftY();
     return y;
   }
+
+  public double getOperatorGamepadRightY() {
+    double y = operatorGamepad.getRightY();
+    return y;
+  }
+
 }

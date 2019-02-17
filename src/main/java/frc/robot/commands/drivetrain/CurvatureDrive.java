@@ -12,38 +12,38 @@ import frc.robot.Robot;
 
 public class CurvatureDrive extends Command {
 
-  private final double SPEED_MULTIPLIER = 0.75;
+  private final double REGULAR_SPEED_MULTIPLIER = 0.75;
+  private final double FULL_SPEED_MULTIPLIER = 1;
   private final double ROTATION_MULTIPLIER = 0.5;
+
   public CurvatureDrive() {
     requires(Robot.drivetrain);
   }
 
-  // Called just before this Command runs the first time
   @Override
   protected void initialize() {
   }
-
-  // Called repeatedly when this Command is scheduled to run
+ 
   @Override
   protected void execute() {
-    Robot.drivetrain.curvatureDrive(Robot.oi.getRightJoystickY() * SPEED_MULTIPLIER, 
-                                    Robot.oi.getLeftJoystickX() * ROTATION_MULTIPLIER);
+
+    double speed = -Robot.oi.getRightJoystickY() * 
+      (Robot.oi.isFullSpeedActivated() ? FULL_SPEED_MULTIPLIER : REGULAR_SPEED_MULTIPLIER);
+
+    double rotation = Robot.oi.getLeftJoystickX() * ROTATION_MULTIPLIER;
+    Robot.drivetrain.curvatureDrive(speed, rotation);
   }
 
-  // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
     return false;
   }
 
-  // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.drivetrain.stopDriveMotors();
+    Robot.drivetrain.stop();
   }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
   @Override
   protected void interrupted() {
     end();

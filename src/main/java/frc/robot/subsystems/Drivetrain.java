@@ -10,7 +10,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.Spark;
-import frc.robot.commands.drivetrain.ArcadeDrive;
+//import frc.robot.commands.drivetrain.ArcadeDrive;
 import frc.robot.commands.drivetrain.CurvatureDrive;
 import frc.robot.RobotMap;
 
@@ -42,7 +42,7 @@ public class Drivetrain extends Subsystem {
   }
 
   // stops the drivetrain
-  public void stopDriveMotors() {
+  public void stop() {
     drive.stopMotor();
   }
 }
