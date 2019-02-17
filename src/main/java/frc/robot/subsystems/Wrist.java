@@ -14,6 +14,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.wrist.MoveWrist;
 
 /**
  * Rotates to score Cargo and Hatch Covers
@@ -51,7 +52,7 @@ public class Wrist extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(null);
+    setDefaultCommand(new MoveWrist());
   }
 
   // allows the wrist to be moved based on joystick input
