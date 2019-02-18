@@ -63,6 +63,10 @@ public class Robot extends TimedRobot {
     chooser.setDefaultOption("Manual Drive", new CurvatureDrive());
     SmartDashboard.putData("Auto mode", chooser);
 
+    startCameraThread();
+  }
+
+  private void startCameraThread() {
     new Thread(() -> {
       UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
       camera.setResolution(480, 360);
@@ -79,9 +83,6 @@ public class Robot extends TimedRobot {
           outputStream.putFrame(output);
       }
     }).start();
-
-    // CameraServer server = CameraServer.getInstance();
-    // camera.startAutomaticCapture(RobotMap.cameraPort);
   }
 
   /**
