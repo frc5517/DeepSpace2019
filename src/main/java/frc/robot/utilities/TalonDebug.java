@@ -12,7 +12,7 @@ public class TalonDebug {
         System.out.println(
             (name == null ? "" : "[" + name + "] ") +
             "[" + talonSrx.getDeviceID() + "]: " + 
-            "Voltage = " + talonSrx.getBusVoltage() + ", " +
+            "Voltage = " + talonSrx.getMotorOutputVoltage() + ", " +
             "Target = " + talonSrx.getClosedLoopTarget() + ", " +
             "Error = " + talonSrx.getClosedLoopError() + ", " +
             "Error Derivative = " + talonSrx.getErrorDerivative() + ", " +
