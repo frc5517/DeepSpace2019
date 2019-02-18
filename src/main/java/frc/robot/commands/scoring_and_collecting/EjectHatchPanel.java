@@ -11,11 +11,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.hatchManipulator.ExtendHatchManipulatorSolenoid;
 import frc.robot.commands.hatchManipulator.RetractHatchSolenoid;
 
-public class ExtendAndRetractHatchManipulatorSolenoid extends CommandGroup {
+public class EjectHatchPanel extends CommandGroup {
   /**
    * Scoring the Hatch Panels by extending and then retracting the Solenoid
    */
-  public ExtendAndRetractHatchManipulatorSolenoid() {
+  public EjectHatchPanel() {
     
     addSequential(new ExtendHatchManipulatorSolenoid());
     addSequential(new RetractHatchSolenoid());

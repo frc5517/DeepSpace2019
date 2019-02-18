@@ -39,6 +39,8 @@ import frc.robot.subsystems.Climber;
  */
 public class Robot extends TimedRobot {
 
+  public static boolean PRINT_SUBSYSTEM_DATA = true;
+  
   // initializing subsystems
   public static Drivetrain drivetrain = new Drivetrain();
   public static Fourbar fourbar = new Fourbar();
@@ -149,12 +151,13 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
     if (autonomousCommand != null) {
       autonomousCommand.cancel();
+    }
+    if (PRINT_SUBSYSTEM_DATA) {
+      wrist.debugPrint();
+      //elevator.debugPrint();
+      //fourbar.debugPrint();
     }
   }
 

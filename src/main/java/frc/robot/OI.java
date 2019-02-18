@@ -14,7 +14,7 @@ import frc.robot.commands.elevator.LowerElevator;
 import frc.robot.commands.elevator.RaiseElevator;
 import frc.robot.commands.fourbar.LowerFourbar;
 import frc.robot.commands.fourbar.RaiseFourbar;
-import frc.robot.commands.scoring_and_collecting.ExtendAndRetractHatchManipulatorSolenoid;
+import frc.robot.commands.scoring_and_collecting.EjectHatchPanel;
 import frc.robot.commands.scoring_and_collecting.SetAllCargoCollectingPosition;
 import frc.robot.commands.scoring_and_collecting.SetAllHatchCollectingPosition;
 import frc.robot.commands.scoring_and_collecting.SetAllHighRocketPosition;
@@ -41,7 +41,7 @@ public class OI {
 
     // Driver Commands
     leftJoystick.getJoystickTrigger().whileHeld(new SpinIntakeOut());
-    leftJoystick.getJoystickButton(LogitechJoystick.BUTTON_2).whenPressed(new ExtendAndRetractHatchManipulatorSolenoid());
+    leftJoystick.getJoystickButton(LogitechJoystick.BUTTON_2).whenPressed(new EjectHatchPanel());
     rightJoystick.getJoystickTrigger().whileHeld(new SpinIntakeIn());
 
     // Operator Commands

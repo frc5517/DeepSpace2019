@@ -15,6 +15,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.wrist.MoveWrist;
+import frc.robot.utilities.TalonDebug;
 
 /**
  * Rotates to score Cargo and Hatch Covers
@@ -25,9 +26,9 @@ public class Wrist extends Subsystem {
   public final double STOP_SPEED = 0.0;
   
   // wrist motor controller
-  WPI_TalonSRX wristMotor = new WPI_TalonSRX(RobotMap.wristPort);
+  WPI_TalonSRX wristTalon = new WPI_TalonSRX(RobotMap.wristPort);
 
-  /****************** PID VALUES ******************/
+  /****************** PID VALUES *****************/
   private final int PID_SLOT_ID = 1;
   private final double kP = 0;
   private final double kI = 0;
@@ -38,16 +39,21 @@ public class Wrist extends Subsystem {
   public Wrist() {
 
     // set the encoder to a TalonSRX Quadrature Encoder
-    wristMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+    wristTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
 
-    wristMotor.config_kP(PID_SLOT_ID, kP);
-    wristMotor.config_kI(PID_SLOT_ID, kI);
-    wristMotor.config_kD(PID_SLOT_ID, kD);
-    wristMotor.config_kF(PID_SLOT_ID, kF);
+    wristTalon.config_kP(PID_SLOT_ID, kP);
+    wristTalon.config_kI(PID_SLOT_ID, kI);
+    wristTalon.config_kD(PID_SLOT_ID, kD);
+    wristTalon.config_kF(PID_SLOT_ID, kF);
 
-    wristMotor.setNeutralMode(NeutralMode.Brake);
+    wristTalon.setNeutralMode(NeutralMode.Brake);
+  
 
     // wristMotor.setInverted(true);
+  }
+
+  public void debugPrint() {
+    TalonDebug.printSrxClosedLoopValues(wristTalon, "Wrist");
   }
 
   @Override
@@ -57,17 +63,17 @@ public class Wrist extends Subsystem {
 
   // allows the wrist to be moved based on joystick input
   public void moveWrist(double speed) {
-    wristMotor.set(ControlMode.PercentOutput, speed);
+    wristTalon.set(ControlMode.PercentOutput, speed);
   }
 
   // allows the wrist to be set to different positions based on
   // sensor values
   public void setWristSetpoint(int setpoint) {
-    wristMotor.setSelectedSensorPosition(setpoint);
+    wristTalon.setSelectedSensorPosition(setpoint);
   }
   
   // stops the elevator
   public void stopWristMotor() {
-    wristMotor.set(ControlMode.PercentOutput, STOP_SPEED);
+    wristTalon.set(ControlMode.PercentOutput, STOP_SPEED);
   }
 }

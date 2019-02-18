@@ -31,6 +31,7 @@ public class CurvatureDrive extends Command {
       (Robot.oi.isFullSpeedActivated() ? FULL_SPEED_MULTIPLIER : REGULAR_SPEED_MULTIPLIER);
 
     double rotation = Robot.oi.getLeftJoystickX() * ROTATION_MULTIPLIER;
+    
     Robot.drivetrain.curvatureDrive(speed, rotation);
   }
 
