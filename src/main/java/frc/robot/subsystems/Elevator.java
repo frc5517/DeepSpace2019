@@ -14,6 +14,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.utilities.TalonDebug;
 
 /**
  * Elevator that lifts the four-bar arm system to scoring height
@@ -21,14 +22,14 @@ import frc.robot.RobotMap;
 public class Elevator extends Subsystem {
 
   public final double ELEVATOR_LIFT_SPEED = 0.65;
-  public final double ELEVATOR_LOWER_SPEED = -0.40;
+  public final double ELEVATOR_LOWER_SPEED = -0.25;
   public final double STOP_SPEED = 0.00;
 
   public final double PID_ELEVATOR_LIFT_SPEED = 0.80;
   public final double PID_ELEVATOR_LOWER_SPEED = -0.50;
 
 
-  /****************** PID VALUES ******************/
+  /****************** PID VALUES *****************/
   private final int PID_SLOT_ID = 1;
   private final double kP = 0;
   private final double kI = 0;
@@ -36,27 +37,25 @@ public class Elevator extends Subsystem {
   private final double kF = 0;
   /***********************************************/
 
-  // elevator motor controller2
-  WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(RobotMap.elevatorPort);
+  // elevator motor controller
+  private WPI_TalonSRX elevatorTalon = new WPI_TalonSRX(RobotMap.elevatorPort);
 
   public Elevator() {
 
-    // setting the encoder to a TalonSRX Quadrature Encoder
-    elevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+    // Set the encoder to a TalonSRX Quadrature Encoder
+    elevatorTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
 
-    elevatorMotor.config_kP(PID_SLOT_ID, kP);
-    elevatorMotor.config_kI(PID_SLOT_ID, kI);
-    elevatorMotor.config_kD(PID_SLOT_ID, kD);
-    elevatorMotor.config_kF(PID_SLOT_ID, kF);
+    elevatorTalon.config_kP(PID_SLOT_ID, kP);
+    elevatorTalon.config_kI(PID_SLOT_ID, kI);
+    elevatorTalon.config_kD(PID_SLOT_ID, kD);
+    elevatorTalon.config_kF(PID_SLOT_ID, kF);
 
-    elevatorMotor.configNominalOutputForward(PID_ELEVATOR_LIFT_SPEED);
-    elevatorMotor.configNominalOutputReverse(PID_ELEVATOR_LOWER_SPEED);
+    elevatorTalon.configNominalOutputForward(PID_ELEVATOR_LIFT_SPEED);
+    elevatorTalon.configNominalOutputReverse(PID_ELEVATOR_LOWER_SPEED);
 
-    // putting the elevator in Brake mode
-    elevatorMotor.setNeutralMode(NeutralMode.Brake);
+    elevatorTalon.setNeutralMode(NeutralMode.Brake);
 
-    // inverting the elevator motor's output
-    elevatorMotor.setInverted(true);
+    elevatorTalon.setInverted(true);
   }
 
   @Override
@@ -64,24 +63,26 @@ public class Elevator extends Subsystem {
     setDefaultCommand(null);
   }
 
-  // allows the elevator to be raised
-  public void raiseElevator() {
-    elevatorMotor.set(ControlMode.PercentOutput, ELEVATOR_LIFT_SPEED);
+  public void debugPrint() {
+    TalonDebug.printSrxClosedLoopValues(elevatorTalon, "Elevator");
   }
 
-  // allows the elevator to be lowered
+  public void raiseElevator() {
+    elevatorTalon.set(ControlMode.PercentOutput, ELEVATOR_LIFT_SPEED);
+  }
+
   public void lowerElevator() {
-    elevatorMotor.set(ControlMode.PercentOutput, ELEVATOR_LOWER_SPEED);
+    elevatorTalon.set(ControlMode.PercentOutput, ELEVATOR_LOWER_SPEED);
   }
 
   // allows the wrist to be set to different positions based on
   // sensor values
   public void setElevatorSetpoint(int setpoint) {
-    elevatorMotor.setSelectedSensorPosition(setpoint);
+    elevatorTalon.setSelectedSensorPosition(setpoint);
   }
   
   // stops the elevator
   public void stopElevatorMotor() {
-    elevatorMotor.set(ControlMode.PercentOutput, STOP_SPEED);
+    elevatorTalon.set(ControlMode.PercentOutput, STOP_SPEED);
   }
 }
