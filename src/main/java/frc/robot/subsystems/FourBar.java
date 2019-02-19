@@ -14,14 +14,13 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.fourbar.MoveFourbar;
 
 /**
  * Fourbar that is used to score Cargo and Hatch Covers
  */
 public class Fourbar extends Subsystem {
 
-  public final double FOUR_BAR_LIFT_SPEED = 0.6;
-  public final double FOUR_BAR_LOWER_SPEED = -0.4;
   public final double STOP_SPEED = 0.00;
 
   /****************** PID VALUES ******************/
@@ -54,27 +53,16 @@ public class Fourbar extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(null);
+    setDefaultCommand(new MoveFourbar());
   }
 
   // allowing the fourbar to raise
-  public void raiseFourbar() {
-    fourbarMotor.set(ControlMode.PercentOutput, FOUR_BAR_LIFT_SPEED);
+  public void moveFourbar(double speed) {
+    fourbarMotor.set(ControlMode.PercentOutput, speed);
   }
 
-  // allowing the fourbar to lower
-  public void lowerFourbar() {
-    fourbarMotor.set(ControlMode.PercentOutput, FOUR_BAR_LOWER_SPEED);
-  }
-  
   // stops the fourbar
   public void stopFourbarMotor() {
     fourbarMotor.set(ControlMode.PercentOutput, STOP_SPEED);
-  }
-
-  // allows the fourbar to be set to different positions based on
-  // sensor values
-  public void setFourbarSetpoint(int setpoint) {
-    fourbarMotor.setSelectedSensorPosition(setpoint);
   }
 }

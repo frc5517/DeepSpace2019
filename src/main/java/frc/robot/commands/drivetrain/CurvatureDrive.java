@@ -13,7 +13,7 @@ import frc.robot.Robot;
 public class CurvatureDrive extends Command {
 
   private final double REGULAR_SPEED_MULTIPLIER = 0.75;
-  private final double FULL_SPEED_MULTIPLIER = 1;
+  private final double FULL_SPEED_MULTIPLIER = 1; 
   private final double ROTATION_MULTIPLIER = 0.5;
 
   public CurvatureDrive() {

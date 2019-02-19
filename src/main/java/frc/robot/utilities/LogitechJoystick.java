@@ -30,8 +30,8 @@ public class LogitechJoystick extends Joystick {
         return getJoystickButton(TRIGGER_BUTTON);
     }
     
-    public boolean isTriggerPressed() {
-        return getJoystickTrigger().get();
+    public boolean isBoostButtonPressed() {
+        return getJoystickButton(BUTTON_2).get();
     }
 
     public JoystickButton getJoystickButton(int buttonId) {

@@ -10,11 +10,8 @@ package frc.robot.commands.fourbar;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class SetFourbarSetpoint extends Command {
-
-  private int setpoint;
-
-  public SetFourbarSetpoint(int setpoint) {
+public class MoveFourbar extends Command {
+  public MoveFourbar() {
     requires(Robot.fourbar);
   }
 
@@ -26,7 +23,7 @@ public class SetFourbarSetpoint extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.fourbar.setFourbarSetpoint(setpoint);
+    Robot.fourbar.moveFourbar(Robot.oi.getOperatorGamepadRightY());
   }
 
   // Make this return true when this Command no longer needs to run execute()

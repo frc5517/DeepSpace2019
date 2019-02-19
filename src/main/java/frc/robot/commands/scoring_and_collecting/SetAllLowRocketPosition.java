@@ -9,7 +9,6 @@ package frc.robot.commands.scoring_and_collecting;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.elevator.SetElevatorSetpoint;
-import frc.robot.commands.fourbar.SetFourbarSetpoint;
 import frc.robot.commands.wrist.SetWristSetpoint;
 
 public class SetAllLowRocketPosition extends CommandGroup {
@@ -20,7 +19,6 @@ public class SetAllLowRocketPosition extends CommandGroup {
   public SetAllLowRocketPosition() {
     
     addSequential(new SetElevatorSetpoint(0));
-    addParallel(new SetFourbarSetpoint(0));
     addParallel(new SetWristSetpoint(0));
   }
 }
