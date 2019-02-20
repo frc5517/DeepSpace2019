@@ -8,7 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+// import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -37,19 +37,16 @@ public class Fourbar extends Subsystem {
 
   public Fourbar() {
 
-    // setting the encoder to a TalonSRX Quadrature Encoder
-    fourbarTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+    // // setting the encoder to a TalonSRX Quadrature Encoder
+    // fourbarTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
 
-    fourbarTalon.config_kP(PID_SLOT_ID, kP);
-    fourbarTalon.config_kI(PID_SLOT_ID, kI);
-    fourbarTalon.config_kD(PID_SLOT_ID, kD);
-    fourbarTalon.config_kF(PID_SLOT_ID, kF);
+    // fourbarTalon.config_kP(PID_SLOT_ID, kP);
+    // fourbarTalon.config_kI(PID_SLOT_ID, kI);
+    // fourbarTalon.config_kD(PID_SLOT_ID, kD);
+    // fourbarTalon.config_kF(PID_SLOT_ID, kF);
 
     // putting the fourbar in Brake mode
     fourbarTalon.setNeutralMode(NeutralMode.Brake);
-    
-    // inverting the fourbar motor's output
-    fourbarTalon.setInverted(true);
   }
 
   @Override

@@ -26,8 +26,7 @@ public class RobotMap {
   public static int cargoManipulatorPort = 3;
 
   // solenoid ports
-  public static int hatchSolenoidForwardPort = 0;
-  public static int hatchSolenoidReversePort = 1;
+  public static int hatchSolenoidPort = 0;
   public static int climbFrontSolenoidForwardPort = 2;
   public static int climbFrontSolenoidReversePort = 3;
   public static int climbRearSolenoidForwardPort = 4;
@@ -41,7 +40,4 @@ public class RobotMap {
   public static int operatorGamepadPort = 2;
 
   // camera settings
-  public static int cameraPort = 0;
-  public static int imageWidth = 320;
-  public static int imageHeight = 240;
 }

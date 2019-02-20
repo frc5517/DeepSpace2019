@@ -7,7 +7,7 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -17,8 +17,7 @@ import frc.robot.RobotMap;
 public class HatchManipulator extends Subsystem {
   
   // creating solenoid for scoring 
-  DoubleSolenoid hatchSolenoid = new DoubleSolenoid(RobotMap.hatchSolenoidForwardPort,
-                                                    RobotMap.hatchSolenoidReversePort);
+  Solenoid hatchSolenoid = new Solenoid(RobotMap.hatchSolenoidPort);
 
   @Override
   public void initDefaultCommand() {
@@ -26,14 +25,10 @@ public class HatchManipulator extends Subsystem {
   }
 
   public void hatchSolenoidForward() {
-    hatchSolenoid.set(DoubleSolenoid.Value.kForward);
-  }
-
-  public void hatchSolenoidReverse() {
-    hatchSolenoid.set(DoubleSolenoid.Value.kReverse);
+    hatchSolenoid.set(true);
   }
 
   public void stopHatchSolenoid() {
-    hatchSolenoid.set(DoubleSolenoid.Value.kOff);
+    hatchSolenoid.set(false);
   }
 }

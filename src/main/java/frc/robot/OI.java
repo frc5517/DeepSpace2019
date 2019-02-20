@@ -12,7 +12,7 @@ import frc.robot.commands.cargoManipulator.SpinIntakeIn;
 import frc.robot.commands.cargoManipulator.SpinIntakeOut;
 import frc.robot.commands.elevator.LowerElevator;
 import frc.robot.commands.elevator.RaiseElevator;
-import frc.robot.commands.scoring_and_collecting.EjectHatchPanel;
+import frc.robot.commands.hatchManipulator.ExtendHatchManipulatorSolenoid;
 import frc.robot.commands.scoring_and_collecting.SetAllCargoCollectingPosition;
 import frc.robot.commands.scoring_and_collecting.SetAllHatchCollectingPosition;
 import frc.robot.commands.scoring_and_collecting.SetAllHighRocketPosition;
@@ -38,7 +38,7 @@ public class OI {
   public void bindControls() {
 
     // Driver Commands
-    leftJoystick.getJoystickButton(LogitechJoystick.BUTTON_2).whenPressed(new EjectHatchPanel());
+    leftJoystick.getJoystickButton(LogitechJoystick.BUTTON_2).whileHeld(new ExtendHatchManipulatorSolenoid());
     leftJoystick.getJoystickTrigger().whileHeld(new SpinIntakeOut());
     rightJoystick.getJoystickTrigger().whileHeld(new SpinIntakeIn());
 
