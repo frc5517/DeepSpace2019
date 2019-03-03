@@ -21,8 +21,10 @@ import frc.robot.utilities.TalonDebug;
  */
 public class Elevator extends Subsystem {
 
-  public final double ELEVATOR_LIFT_SPEED = 0.65;
-  public final double ELEVATOR_LOWER_SPEED = -0.25;
+  // public final double ELEVATOR_LIFT_SPEED = 0.65;
+  // public final double ELEVATOR_LOWER_SPEED = -0.25;
+  public final double ELEVATOR_LIFT_SPEED = 0.25;
+  public final double ELEVATOR_LOWER_SPEED = -0.10;
   public final double STOP_SPEED = 0.00;
 
   public final double PID_ELEVATOR_LIFT_SPEED = 0.80;

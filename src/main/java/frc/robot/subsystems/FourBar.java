@@ -25,11 +25,11 @@ public class Fourbar extends Subsystem {
   public final double STOP_SPEED = 0.00;
 
   /****************** PID VALUES ******************/
-  private final int PID_SLOT_ID = 0;
-  private final double kP = 0;
-  private final double kI = 0;
-  private final double kD = 0;
-  private final double kF = 0;
+  // private final int PID_SLOT_ID = 0;
+  // private final double kP = 0;
+  // private final double kI = 0;
+  // private final double kD = 0;
+  // private final double kF = 0;
   /***********************************************/
 
   // four-bar motor controller
