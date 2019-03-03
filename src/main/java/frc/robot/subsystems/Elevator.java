@@ -21,8 +21,10 @@ import frc.robot.utilities.TalonDebug;
  */
 public class Elevator extends Subsystem {
 
-  public final double ELEVATOR_LIFT_SPEED = 0.65;
-  public final double ELEVATOR_LOWER_SPEED = -0.25;
+  // public final double ELEVATOR_LIFT_SPEED = 0.65;
+  // public final double ELEVATOR_LOWER_SPEED = -0.25;
+  public final double ELEVATOR_LIFT_SPEED = 0.25;
+  public final double ELEVATOR_LOWER_SPEED = -0.1;
   public final double STOP_SPEED = 0.00;
 
   public final double PID_ELEVATOR_LIFT_SPEED = 0.80;
@@ -30,7 +32,7 @@ public class Elevator extends Subsystem {
 
 
   /****************** PID VALUES *****************/
-  private final int PID_SLOT_ID = 1;
+  private final int PID_SLOT_ID = 2;
   private final double kP = 0;
   private final double kI = 0;
   private final double kD = 0;
@@ -45,13 +47,13 @@ public class Elevator extends Subsystem {
     // Set the encoder to a TalonSRX Quadrature Encoder
     elevatorTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
 
-    elevatorTalon.config_kP(PID_SLOT_ID, kP);
-    elevatorTalon.config_kI(PID_SLOT_ID, kI);
-    elevatorTalon.config_kD(PID_SLOT_ID, kD);
-    elevatorTalon.config_kF(PID_SLOT_ID, kF);
+    // elevatorTalon.config_kP(PID_SLOT_ID, kP);
+    // elevatorTalon.config_kI(PID_SLOT_ID, kI);
+    // elevatorTalon.config_kD(PID_SLOT_ID, kD);
+    // elevatorTalon.config_kF(PID_SLOT_ID, kF);
 
-    elevatorTalon.configNominalOutputForward(PID_ELEVATOR_LIFT_SPEED);
-    elevatorTalon.configNominalOutputReverse(PID_ELEVATOR_LOWER_SPEED);
+    // elevatorTalon.configNominalOutputForward(PID_ELEVATOR_LIFT_SPEED);
+    // elevatorTalon.configNominalOutputReverse(PID_ELEVATOR_LOWER_SPEED);
 
     elevatorTalon.setNeutralMode(NeutralMode.Brake);
 
