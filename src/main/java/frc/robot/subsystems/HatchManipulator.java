@@ -17,18 +17,18 @@ import frc.robot.RobotMap;
 public class HatchManipulator extends Subsystem {
   
   // creating solenoid for scoring 
-  Solenoid hatchSolenoid = new Solenoid(RobotMap.hatchSolenoidPort);
+  Solenoid hatchPanelSolenoid = new Solenoid(RobotMap.hatchPanelSolenoidPort);
 
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(null);
   }
 
-  public void hatchSolenoidForward() {
-    hatchSolenoid.set(true);
+  public void extendHatchPanelSolenoid() {
+    hatchPanelSolenoid.set(true);
   }
 
-  public void stopHatchSolenoid() {
-    hatchSolenoid.set(false);
+  public void stopHatchPanelSolenoid() {
+    hatchPanelSolenoid.set(false);
   }
 }

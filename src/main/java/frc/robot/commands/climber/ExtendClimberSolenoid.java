@@ -10,8 +10,8 @@ package frc.robot.commands.climber;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class RaiseClimbSolenoids extends Command {
-  public RaiseClimbSolenoids() {
+public class ExtendClimberSolenoid extends Command {
+  public ExtendClimberSolenoid() {
     requires(Robot.climber);
   }
 
@@ -23,7 +23,7 @@ public class RaiseClimbSolenoids extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.climber.raiseClimbSolenoids();
+    Robot.climber.extendClimberSolenoid();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -35,7 +35,7 @@ public class RaiseClimbSolenoids extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.climber.stopClimbSolenoids();
+    Robot.climber.stopClimberSolenoid();
   }
 
   // Called when another command which requires one or more of the same

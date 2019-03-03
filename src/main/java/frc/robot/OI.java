@@ -10,6 +10,7 @@ package frc.robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.cargoManipulator.SpinIntakeIn;
 import frc.robot.commands.cargoManipulator.SpinIntakeOut;
+import frc.robot.commands.climber.ExtendClimberSolenoid;
 import frc.robot.commands.elevator.LowerElevator;
 import frc.robot.commands.elevator.RaiseElevator;
 import frc.robot.commands.hatchManipulator.ExtendHatchManipulatorSolenoid;
@@ -39,6 +40,7 @@ public class OI {
 
     // Driver Commands
     leftJoystick.getJoystickButton(LogitechJoystick.BUTTON_2).whileHeld(new ExtendHatchManipulatorSolenoid());
+    leftJoystick.getJoystickButton(LogitechJoystick.BUTTON_3).whileHeld(new ExtendClimberSolenoid());
     leftJoystick.getJoystickTrigger().whileHeld(new SpinIntakeOut());
     rightJoystick.getJoystickTrigger().whileHeld(new SpinIntakeIn());
 

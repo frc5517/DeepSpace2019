@@ -7,7 +7,7 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -17,35 +17,18 @@ import frc.robot.RobotMap;
  */
 public class Climber extends Subsystem  {
 
-  DoubleSolenoid climbSolenoidFront = new DoubleSolenoid(RobotMap.climbFrontSolenoidForwardPort, 
-                                                         RobotMap.climbFrontSolenoidReversePort);
-  DoubleSolenoid climbSolenoidRear = new DoubleSolenoid(RobotMap.climbRearSolenoidForwardPort, 
-                                                        RobotMap.climbRearSolenoidReversePort);
+  Solenoid climberSolenoid = new Solenoid(RobotMap.climberSolenoidPort);
 
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(null);
   }
 
-  // extends the climb solenoids
-  public void raiseClimbSolenoids() {
-    climbSolenoidFront.set(DoubleSolenoid.Value.kForward);
-    climbSolenoidRear.set(DoubleSolenoid.Value.kForward);
+  public void extendClimberSolenoid() {
+    climberSolenoid.set(true);
   }
 
-  // retracts the front climb solenoids
-  public void lowerFrontClimbSolenoids() {
-    climbSolenoidFront.set(DoubleSolenoid.Value.kReverse);
-  }
-
-  // retracts the rear climb solenoids
-  public void lowerRearClimbSolenoids() {
-    climbSolenoidRear.set(DoubleSolenoid.Value.kReverse);
-  }
-
-  // stops the climb solenoids
-  public void stopClimbSolenoids() {
-    climbSolenoidFront.set(DoubleSolenoid.Value.kOff);
-    climbSolenoidRear.set(DoubleSolenoid.Value.kOff);
+  public void stopClimberSolenoid() {
+    climberSolenoid.set(false);
   }
 }

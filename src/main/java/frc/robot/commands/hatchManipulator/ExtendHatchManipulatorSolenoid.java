@@ -23,7 +23,7 @@ public class ExtendHatchManipulatorSolenoid extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.hatchManipulator.hatchSolenoidForward();
+    Robot.hatchManipulator.extendHatchPanelSolenoid();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -35,7 +35,7 @@ public class ExtendHatchManipulatorSolenoid extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.hatchManipulator.stopHatchSolenoid();
+    Robot.hatchManipulator.stopHatchPanelSolenoid();
   }
 
   // Called when another command which requires one or more of the same

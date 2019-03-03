@@ -26,11 +26,8 @@ public class RobotMap {
   public static int cargoManipulatorPort = 3;
 
   // solenoid ports
-  public static int hatchSolenoidPort = 0;
-  public static int climbFrontSolenoidForwardPort = 2;
-  public static int climbFrontSolenoidReversePort = 3;
-  public static int climbRearSolenoidForwardPort = 4;
-  public static int climbRearSolenoidReversePort = 5;
+  public static int hatchPanelSolenoidPort = 0;
+  public static int climberSolenoidPort = 1;
 
   // joystick ports
   public static int leftJoystickPort = 0;
