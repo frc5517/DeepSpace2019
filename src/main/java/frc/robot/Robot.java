@@ -28,7 +28,6 @@ import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.HatchManipulator;
 import frc.robot.subsystems.Wrist;
-import frc.robot.subsystems.Climber;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -48,7 +47,6 @@ public class Robot extends TimedRobot {
   public static Wrist wrist = new Wrist();
   public static CargoManiuplator cargoManiuplator = new CargoManiuplator();
   public static HatchManipulator hatchManipulator = new HatchManipulator();
-  public static Climber climber = new Climber();
   public static OI oi;
 
   Command autonomousCommand;
