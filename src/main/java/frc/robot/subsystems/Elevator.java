@@ -21,23 +21,20 @@ import frc.robot.utilities.TalonDebug;
  */
 public class Elevator extends Subsystem {
 
-  // public final double ELEVATOR_LIFT_SPEED = 0.65;
-  // public final double ELEVATOR_LOWER_SPEED = -0.25;
-  public final double ELEVATOR_LIFT_SPEED = 0.25;
-  public final double ELEVATOR_LOWER_SPEED = -0.10;
+  /****************** CONSTANT VALUES *****************/
+  public final double ELEVATOR_LIFT_SPEED = 0.65;
+  public final double ELEVATOR_LOWER_SPEED = -0.25;
   public final double STOP_SPEED = 0.00;
 
   public final double PID_ELEVATOR_LIFT_SPEED = 0.80;
   public final double PID_ELEVATOR_LOWER_SPEED = -0.50;
-
-
-  /****************** PID VALUES *****************/
-  private final int PID_SLOT_ID = 1;
+  
+  private final int PID_SLOT_ID = 2;
   private final double kP = 0;
   private final double kI = 0;
   private final double kD = 0;
   private final double kF = 0;
-  /***********************************************/
+  /****************************************************/
 
   // elevator motor controller
   private WPI_TalonSRX elevatorTalon = new WPI_TalonSRX(RobotMap.elevatorPort);

@@ -12,6 +12,7 @@ import frc.robot.commands.cargoManipulator.SpinIntakeIn;
 import frc.robot.commands.cargoManipulator.SpinIntakeOut;
 import frc.robot.commands.elevator.LowerElevator;
 import frc.robot.commands.elevator.RaiseElevator;
+import frc.robot.commands.elevator.SetElevatorSetpoint;
 import frc.robot.commands.hatchManipulator.ExtendHatchManipulatorSolenoid;
 import frc.robot.commands.scoring_and_collecting.SetAllCargoCollectingPosition;
 import frc.robot.commands.scoring_and_collecting.SetAllHatchCollectingPosition;
@@ -51,6 +52,7 @@ public class OI {
     // operatorGamepad.getRightTrigger().whenPressed(new SetAllHighRocketPosition());
     // operatorGamepad.getLeftShoulder().whenPressed(new SetAllHatchCollectingPosition());
     // operatorGamepad.getLeftTrigger().whenPressed(new SetAllCargoCollectingPosition());
+    // operatorGamepad.getButtonA().whenPressed(new SetElevatorSetpoint());
   }
 
   public boolean isFullSpeedActivated() {

@@ -27,6 +27,7 @@ public class SetElevatorSetpoint extends Command {
   @Override
   protected void execute() {
     Robot.elevator.setElevatorSetpoint(setpoint);
+    Robot.elevator.debugPrint();
   }
 
   // Make this return true when this Command no longer needs to run execute()
