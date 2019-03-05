@@ -20,21 +20,24 @@ import frc.robot.utilities.TalonDebug;
 /**
  * Rotates to score Cargo and Hatch Covers
  */
-public class Wrist extends Subsystem {
-
-  public final double WRIST_SPEED = 0.30;
-  public final double STOP_SPEED = 0.0;
+public class Wrist extends Subsystem {  
   
-  // wrist motor controller
-  WPI_TalonSRX wristTalon = new WPI_TalonSRX(RobotMap.wristPort);
 
-  /****************** PID VALUES *****************/
+  /****************** CONSTANT VALUES *****************/
+  public final double WRIST_SPEED = 0.30;
+  public final double STOP_SPEED = 0.00;
+
+  public final double PID_WRIST_SPEED = 0.50;
+  
   private final int PID_SLOT_ID = 1;
   private final double kP = 0;
   private final double kI = 0;
   private final double kD = 0;
   private final double kF = 0;
-  /***********************************************/
+  /****************************************************/
+
+  // wrist motor controller
+  WPI_TalonSRX wristTalon = new WPI_TalonSRX(RobotMap.wristPort);
 
   public Wrist() {
 
@@ -47,9 +50,9 @@ public class Wrist extends Subsystem {
     wristTalon.config_kF(PID_SLOT_ID, kF);
 
     wristTalon.setNeutralMode(NeutralMode.Brake);
-  
-
-    // wristMotor.setInverted(true);
+    
+    wristTalon.configNominalOutputForward(PID_WRIST_SPEED);
+    wristTalon.configNominalOutputReverse(-PID_WRIST_SPEED);
   }
 
   public void debugPrint() {

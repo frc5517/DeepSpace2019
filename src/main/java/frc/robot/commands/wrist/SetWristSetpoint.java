@@ -27,6 +27,7 @@ public class SetWristSetpoint extends Command {
   @Override
   protected void execute() {
     Robot.wrist.setWristSetpoint(setpoint);
+    Robot.wrist.debugPrint();
   }
 
   // Make this return true when this Command no longer needs to run execute()
