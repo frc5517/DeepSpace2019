@@ -31,6 +31,7 @@ public class OI {
   public LogitechJoystick leftJoystick = new LogitechJoystick(RobotMap.leftJoystickPort);
   public LogitechJoystick rightJoystick = new LogitechJoystick(RobotMap.rightJoystickPort);
   public Gamepad operatorGamepad = new Gamepad(RobotMap.operatorGamepadPort);
+  public Gamepad driverGamepad = new Gamepad(RobotMap.driverGamepadPort);
 
   public OI() {
     bindControls();
@@ -71,6 +72,10 @@ public class OI {
     return operatorGamepad;
   }
 
+  public Gamepad getDriverGamepad() {
+    return driverGamepad;
+  }
+
   public double getLeftJoystickX() {
     double x = leftJoystick.getX();
     return x;
@@ -79,6 +84,16 @@ public class OI {
   public double getRightJoystickY() {
     double y = rightJoystick.getY();
     return y;
+  }
+
+  public double getDriverGamepadRightX() {
+    double x = driverGamepad.getRightX();
+    return x;
+  }
+
+  public double getDriverGamepadLeftY() {
+    double y = driverGamepad.getLeftY();
+    return -y;
   }
 
   public double getOperatorGamepadLeftY() {

@@ -35,6 +35,5 @@ public class RobotMap {
 
   // gamepad port
   public static int operatorGamepadPort = 2;
-
-  // camera settings
+  public static int driverGamepadPort = 3;
 }
