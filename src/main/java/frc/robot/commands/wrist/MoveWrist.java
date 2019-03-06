@@ -23,7 +23,7 @@ public class MoveWrist extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.wrist.moveWrist(Robot.oi.getOperatorGamepadLeftY() * 0.25);
+    Robot.wrist.moveWrist(Robot.oi.getOperatorGamepadLeftY() * 0.15);
     // Robot.wrist.debugPrint();
   }
 
