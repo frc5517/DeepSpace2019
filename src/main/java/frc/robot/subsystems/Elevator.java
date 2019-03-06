@@ -26,14 +26,14 @@ public class Elevator extends Subsystem {
   public final double ELEVATOR_LOWER_SPEED = -0.25;
   public final double STOP_SPEED = 0.00;
 
-  public final double PID_ELEVATOR_LIFT_SPEED = 0.80;
-  public final double PID_ELEVATOR_LOWER_SPEED = -0.50;
+  public final double PID_ELEVATOR_LIFT_SPEED = 0.50;
+  public final double PID_ELEVATOR_LOWER_SPEED = -0.35;
   
   private final int PID_SLOT_ID = 2;
-  private final double kP = 0;
+  private final double kP = 0.12487793;
   private final double kI = 0;
   private final double kD = 0;
-  private final double kF = 0;
+  private final double kF = 0.19233722;
   /****************************************************/
 
   // elevator motor controller
@@ -76,8 +76,8 @@ public class Elevator extends Subsystem {
 
   // allows the wrist to be set to different positions based on
   // sensor values
-  public void setElevatorSetpoint(int setpoint) {
-    elevatorTalon.setSelectedSensorPosition(setpoint);
+  public void setElevatorSetpoint(double setpoint) {
+    elevatorTalon.set(ControlMode.Position, 0.0);
   }
   
   // stops the elevator

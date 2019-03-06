@@ -44,15 +44,15 @@ public class Wrist extends Subsystem {
     // set the encoder to a TalonSRX Quadrature Encoder
     wristTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
 
-    wristTalon.config_kP(PID_SLOT_ID, kP);
-    wristTalon.config_kI(PID_SLOT_ID, kI);
-    wristTalon.config_kD(PID_SLOT_ID, kD);
-    wristTalon.config_kF(PID_SLOT_ID, kF);
+    // wristTalon.config_kP(PID_SLOT_ID, kP);
+    // wristTalon.config_kI(PID_SLOT_ID, kI);
+    // wristTalon.config_kD(PID_SLOT_ID, kD);
+    // wristTalon.config_kF(PID_SLOT_ID, kF);
 
     wristTalon.setNeutralMode(NeutralMode.Brake);
     
-    wristTalon.configNominalOutputForward(PID_WRIST_SPEED);
-    wristTalon.configNominalOutputReverse(-PID_WRIST_SPEED);
+    // wristTalon.configNominalOutputForward(PID_WRIST_SPEED);
+    // wristTalon.configNominalOutputReverse(-PID_WRIST_SPEED);
   }
 
   public void debugPrint() {

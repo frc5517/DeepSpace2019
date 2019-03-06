@@ -53,7 +53,7 @@ public class OI {
     // operatorGamepad.getRightTrigger().whenPressed(new SetAllHighRocketPosition());
     // operatorGamepad.getLeftShoulder().whenPressed(new SetAllHatchCollectingPosition());
     // operatorGamepad.getLeftTrigger().whenPressed(new SetAllCargoCollectingPosition());
-    // operatorGamepad.getButtonA().whenPressed(new SetElevatorSetpoint());
+    operatorGamepad.getButtonA().whenPressed(new SetElevatorSetpoint(0.0));
   }
 
   public boolean isFullSpeedActivated() {
