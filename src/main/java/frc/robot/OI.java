@@ -12,13 +12,7 @@ import frc.robot.commands.cargoManipulator.SpinIntakeIn;
 import frc.robot.commands.cargoManipulator.SpinIntakeOut;
 import frc.robot.commands.elevator.LowerElevator;
 import frc.robot.commands.elevator.RaiseElevator;
-import frc.robot.commands.elevator.SetElevatorSetpoint;
 import frc.robot.commands.hatchManipulator.ExtendHatchManipulatorSolenoid;
-import frc.robot.commands.scoring_and_collecting.SetAllCargoCollectingPosition;
-import frc.robot.commands.scoring_and_collecting.SetAllHatchCollectingPosition;
-import frc.robot.commands.scoring_and_collecting.SetAllHighRocketPosition;
-import frc.robot.commands.scoring_and_collecting.SetAllLowRocketPosition;
-import frc.robot.commands.scoring_and_collecting.SetAllMiddleRocketPosition;
 import frc.robot.utilities.Gamepad;
 import frc.robot.utilities.LogitechJoystick;
 
@@ -27,6 +21,9 @@ import frc.robot.utilities.LogitechJoystick;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+
+
+  private final static double JOYSTICK_DEADZONE = 0.1;
 
   public LogitechJoystick leftJoystick = new LogitechJoystick(RobotMap.leftJoystickPort);
   public LogitechJoystick rightJoystick = new LogitechJoystick(RobotMap.rightJoystickPort);
@@ -53,7 +50,7 @@ public class OI {
     // operatorGamepad.getRightTrigger().whenPressed(new SetAllHighRocketPosition());
     // operatorGamepad.getLeftShoulder().whenPressed(new SetAllHatchCollectingPosition());
     // operatorGamepad.getLeftTrigger().whenPressed(new SetAllCargoCollectingPosition());
-    operatorGamepad.getButtonA().whenPressed(new SetElevatorSetpoint(0.0));
+    // operatorGamepad.getButtonA().whenPressed(new SetElevatorSetpoint(0.0));
   }
 
   public boolean isFullSpeedActivated() {
@@ -98,11 +95,17 @@ public class OI {
 
   public double getOperatorGamepadLeftY() {
     double y = operatorGamepad.getLeftY();
+    if(Math.abs(y) < JOYSTICK_DEADZONE) {
+      return 0;
+    }
     return y;
   }
 
   public double getOperatorGamepadRightY() {  
     double y = operatorGamepad.getRightY();
+    if(Math.abs(y) < JOYSTICK_DEADZONE) {
+      return 0;
+    }
     return y;
   }
 

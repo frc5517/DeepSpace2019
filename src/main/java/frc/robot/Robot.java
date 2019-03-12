@@ -63,17 +63,38 @@ public class Robot extends TimedRobot {
     chooser.setDefaultOption("Manual Drive", new CurvatureDrive());
     SmartDashboard.putData("Auto mode", chooser);
 
-    startCameraThread();
+    startCameraOneThread();
+    startCameraTwoThread();
   }
 
-  private void startCameraThread() {
+  private void startCameraOneThread() {
     new Thread(() -> {
-      UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-      camera.setResolution(360, 240);
-      camera.setFPS(30);
+      UsbCamera cameraOne = CameraServer.getInstance().startAutomaticCapture();
+      cameraOne.setResolution(256, 144);
+      cameraOne.setFPS(15);
       
       CvSink cvSink = CameraServer.getInstance().getVideo();
-      CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 360, 240);
+      CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 256, 144);
+      
+      Mat source = new Mat();
+      Mat output = new Mat();
+      
+      while(!Thread.interrupted()) {
+          cvSink.grabFrame(source);
+          Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
+          outputStream.putFrame(output);
+      }
+    }).start();
+  }
+
+  private void startCameraTwoThread() {
+    new Thread(() -> {
+      UsbCamera cameraTwo = CameraServer.getInstance().startAutomaticCapture();
+      cameraTwo.setResolution(256, 144);
+      cameraTwo.setFPS(15);
+      
+      CvSink cvSink = CameraServer.getInstance().getVideo();
+      CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 256, 144);
       
       Mat source = new Mat();
       Mat output = new Mat();
@@ -154,7 +175,7 @@ public class Robot extends TimedRobot {
       autonomousCommand.cancel();
     }
     if (PRINT_SUBSYSTEM_DATA) {
-      wrist.debugPrint();
+      //wrist.debugPrint();
       //elevator.debugPrint();
       //fourbar.debugPrint();
     }

@@ -22,6 +22,7 @@ public class CurvatureDrive extends Command {
 
   @Override
   protected void initialize() {
+    Robot.drivetrain.stop();
   }
  
   @Override

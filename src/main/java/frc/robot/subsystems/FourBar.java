@@ -69,7 +69,7 @@ public class Fourbar extends Subsystem {
 
   // allows the fourbar to be set to different positions based on
   // sensor values
-  public void setFourbarSetpoint(int setpoint) {
-    fourbarTalon.setSelectedSensorPosition(setpoint);
-  }
+  // public void setFourbarSetpoint(int setpoint) {
+  //   fourbarTalon.setSelectedSensorPosition(setpoint);
+  // }
 }
