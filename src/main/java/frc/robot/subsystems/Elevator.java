@@ -26,14 +26,14 @@ public class Elevator extends Subsystem {
   public final double ELEVATOR_LOWER_SPEED = -0.25;
   public final double STOP_SPEED = 0.00;
 
-  // public final double PID_ELEVATOR_LIFT_SPEED = 0.50;
-  // public final double PID_ELEVATOR_LOWER_SPEED = -0.35;
+  public final double PID_ELEVATOR_LIFT_SPEED = 0.50;
+  public final double PID_ELEVATOR_LOWER_SPEED = -0.35;
   
-  // private final int PID_SLOT_ID = 2;
-  // private final double kP = 0.12487793;
-  // private final double kI = 0;
-  // private final double kD = 0;
-  // private final double kF = 0.19233722;
+  private final int PID_SLOT_ID = 2;
+  private final double kP = 0.12487793;
+  private final double kI = 0;
+  private final double kD = 0;
+  private final double kF = 0.19233722;
   /****************************************************/
 
   // elevator motor controller
@@ -42,15 +42,15 @@ public class Elevator extends Subsystem {
   public Elevator() {
 
     // Set the encoder to a TalonSRX Quadrature Encoder
-    // elevatorTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+    elevatorTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
 
-    // elevatorTalon.config_kP(PID_SLOT_ID, kP);
-    // elevatorTalon.config_kI(PID_SLOT_ID, kI);
-    // elevatorTalon.config_kD(PID_SLOT_ID, kD);
-    // elevatorTalon.config_kF(PID_SLOT_ID, kF);
+    elevatorTalon.config_kP(PID_SLOT_ID, kP);
+    elevatorTalon.config_kI(PID_SLOT_ID, kI);
+    elevatorTalon.config_kD(PID_SLOT_ID, kD);
+    elevatorTalon.config_kF(PID_SLOT_ID, kF);
 
-    // elevatorTalon.configNominalOutputForward(PID_ELEVATOR_LIFT_SPEED);
-    // elevatorTalon.configNominalOutputReverse(PID_ELEVATOR_LOWER_SPEED);
+    elevatorTalon.configNominalOutputForward(PID_ELEVATOR_LIFT_SPEED);
+    elevatorTalon.configNominalOutputReverse(PID_ELEVATOR_LOWER_SPEED);
 
     elevatorTalon.setNeutralMode(NeutralMode.Brake);
 
@@ -74,11 +74,11 @@ public class Elevator extends Subsystem {
     elevatorTalon.set(ControlMode.PercentOutput, ELEVATOR_LOWER_SPEED);
   }
 
-  // // allows the wrist to be set to different positions based on
-  // // sensor values
-  // public void setElevatorSetpoint(double setpoint) {
-  //   elevatorTalon.set(ControlMode.Position, 0.0);
-  // }
+  // allows the wrist to be set to different positions based on
+  // sensor values
+  public void setElevatorSetpoint(double setpoint) {
+    elevatorTalon.set(ControlMode.Position, 0.0);
+  }
   
   // stops the elevator
   public void stopElevatorMotor() {

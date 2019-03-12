@@ -20,7 +20,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-// import frc.robot.commands.drivetrain.ArcadeDrive;
 import frc.robot.commands.drivetrain.CurvatureDrive;
 import frc.robot.subsystems.Fourbar;
 import frc.robot.subsystems.CargoManiuplator;
@@ -59,7 +58,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     oi = new OI();
-    // chooser.setDefaultOption("Manual Drive", new ArcadeDrive());
     chooser.setDefaultOption("Manual Drive", new CurvatureDrive());
     SmartDashboard.putData("Auto mode", chooser);
 
@@ -149,10 +147,16 @@ public class Robot extends TimedRobot {
     autonomousCommand = chooser.getSelected();
 
     /*
-     * String autoSelected = SmartDashboard.getString("Auto Selector",
-     * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-     * = new MyAutoCommand(); break; case "Default Auto": default:
-     * autonomousCommand = new ExampleCommand(); break; }
+     * String autoSelected = SmartDashboard.getString("Auto Selector", "Default"); 
+     * switch(autoSelected) { 
+     *  case "My Auto": 
+     *    autonomousCommand = new MyAutoCommand(); 
+     *    break; 
+     *  case "Default Auto": 
+     *  default:
+     *    autonomousCommand = new ExampleCommand(); 
+     *    break; 
+    *  }
      */
 
     // schedule the autonomous command (example)

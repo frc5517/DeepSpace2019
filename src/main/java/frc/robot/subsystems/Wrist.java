@@ -26,13 +26,13 @@ public class Wrist extends Subsystem {
   /****************** CONSTANT VALUES *****************/
   public final double STOP_SPEED = 0.00;
 
-  // public final double PID_WRIST_SPEED = 0.50;
+  public final double PID_WRIST_SPEED = 0.50;
   
-  // private final int PID_SLOT_ID = 1;
-  // private final double kP = 0;
-  // private final double kI = 0;
-  // private final double kD = 0;
-  // private final double kF = 0;
+  private final int PID_SLOT_ID = 1;
+  private final double kP = 0;
+  private final double kI = 0;
+  private final double kD = 0;
+  private final double kF = 0;
   /****************************************************/
 
   // wrist motor controller
@@ -41,17 +41,17 @@ public class Wrist extends Subsystem {
   public Wrist() {
 
     // set the encoder to a TalonSRX Quadrature Encoder
-    // wristTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+    wristTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
 
-    // wristTalon.config_kP(PID_SLOT_ID, kP);
-    // wristTalon.config_kI(PID_SLOT_ID, kI);
-    // wristTalon.config_kD(PID_SLOT_ID, kD);
-    // wristTalon.config_kF(PID_SLOT_ID, kF);
+    wristTalon.config_kP(PID_SLOT_ID, kP);
+    wristTalon.config_kI(PID_SLOT_ID, kI);
+    wristTalon.config_kD(PID_SLOT_ID, kD);
+    wristTalon.config_kF(PID_SLOT_ID, kF);
 
-    wristTalon.setNeutralMode(NeutralMode.Brake);
+    wristTalon.configNominalOutputForward(PID_WRIST_SPEED);
+    wristTalon.configNominalOutputReverse(-PID_WRIST_SPEED);
     
-    // wristTalon.configNominalOutputForward(PID_WRIST_SPEED);
-    // wristTalon.configNominalOutputReverse(-PID_WRIST_SPEED);
+    wristTalon.setNeutralMode(NeutralMode.Brake);
   }
 
   public void debugPrint() {
@@ -68,11 +68,11 @@ public class Wrist extends Subsystem {
     wristTalon.set(ControlMode.PercentOutput, speed);
   }
 
-  // // allows the wrist to be set to different positions based on
-  // // sensor values
-  // public void setWristSetpoint(int setpoint) {
-  //   wristTalon.setSelectedSensorPosition(setpoint);
-  // }
+  // allows the wrist to be set to different positions based on
+  // sensor values
+  public void setWristSetpoint(int setpoint) {
+    wristTalon.setSelectedSensorPosition(setpoint);
+  }
   
   // stops the elevator
   public void stopWristMotor() {

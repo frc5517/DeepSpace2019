@@ -19,7 +19,7 @@ import frc.robot.RobotMap;
  */
 public class CargoManiuplator extends Subsystem {
 
-  public final double SPIN_IN_SPEED = 0.35;
+  public final double SPIN_IN_SPEED = 0.50;
   public final double SPIN_OUT_SPEED = -0.75;
   public final double STOP_SPEED = 0.00;
   
