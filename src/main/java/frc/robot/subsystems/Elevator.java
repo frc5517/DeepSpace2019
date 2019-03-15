@@ -26,35 +26,50 @@ public class Elevator extends Subsystem {
   public final double ELEVATOR_LOWER_SPEED = -0.25;
   public final double STOP_SPEED = 0.00;
 
-  public final double PID_ELEVATOR_LIFT_SPEED = 0.50;
-  public final double PID_ELEVATOR_LOWER_SPEED = -0.35;
+  public final double PID_NOMINAL_OUTPUT = 0.00;
+  public final double PID_PEAK_LIFT_SPEED = 0.25;
+  public final double PID_PEAK_LOWER_SPEED = -0.10;
   
-  private final int PID_SLOT_ID = 2;
-  private final double kP = 0.12487793;
-  private final double kI = 0;
-  private final double kD = 0;
-  private final double kF = 0.19233722;
+  private final int PID_SLOT_ID = 0;
+  private final int ALLOWABLE_ERROR = 0;
+  private final int TIMEOUT_MS = 30;
+
+  private final double kP = 0.0;
+  private final double kI = 0.0;
+  private final double kD = 0.0;
+  private final double kF = 0.0;
   /****************************************************/
 
   // elevator motor controller
   private WPI_TalonSRX elevatorTalon = new WPI_TalonSRX(RobotMap.elevatorPort);
 
   public Elevator() {
+    
+    elevatorTalon.setNeutralMode(NeutralMode.Brake);
+    elevatorTalon.setInverted(true);
+    elevatorTalon.setSensorPhase(true);
 
     // Set the encoder to a TalonSRX Quadrature Encoder
-    elevatorTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+    elevatorTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,
+                                               PID_SLOT_ID, 
+                                               TIMEOUT_MS);
+
+    elevatorTalon.configNominalOutputForward(PID_NOMINAL_OUTPUT, TIMEOUT_MS);
+    elevatorTalon.configNominalOutputReverse(PID_NOMINAL_OUTPUT, TIMEOUT_MS);
+    elevatorTalon.configPeakOutputForward(PID_PEAK_LIFT_SPEED);
+    elevatorTalon.configPeakOutputReverse(PID_PEAK_LOWER_SPEED);
+    
+    elevatorTalon.configAllowableClosedloopError(PID_SLOT_ID, ALLOWABLE_ERROR, TIMEOUT_MS);
 
     elevatorTalon.config_kP(PID_SLOT_ID, kP);
     elevatorTalon.config_kI(PID_SLOT_ID, kI);
     elevatorTalon.config_kD(PID_SLOT_ID, kD);
     elevatorTalon.config_kF(PID_SLOT_ID, kF);
 
-    elevatorTalon.configNominalOutputForward(PID_ELEVATOR_LIFT_SPEED);
-    elevatorTalon.configNominalOutputReverse(PID_ELEVATOR_LOWER_SPEED);
+    int absolutePosition = elevatorTalon.getSensorCollection().getPulseWidthPosition();
+    absolutePosition &= 0xFFF;
 
-    elevatorTalon.setNeutralMode(NeutralMode.Brake);
-
-    elevatorTalon.setInverted(true);
+    elevatorTalon.setSelectedSensorPosition(absolutePosition, PID_SLOT_ID, TIMEOUT_MS);
   }
 
   @Override

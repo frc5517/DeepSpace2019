@@ -12,9 +12,9 @@ import frc.robot.Robot;
 
 public class SetWristSetpoint extends Command {
 
-  private int setpoint;
+  private double setpoint;
 
-  public SetWristSetpoint(int setpoint) {
+  public SetWristSetpoint() {
     requires(Robot.wrist);
   }
 
@@ -26,7 +26,7 @@ public class SetWristSetpoint extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    // Robot.wrist.setWristSetpoint(setpoint);
+    Robot.wrist.setWristSetpoint(setpoint);
     Robot.wrist.debugPrint();
   }
 

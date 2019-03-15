@@ -12,9 +12,9 @@ import frc.robot.Robot;
 
 public class SetElevatorSetpoint extends Command {
 
-  private int setpoint;
+  private double setpoint;
 
-  public SetElevatorSetpoint(double setpoint) {
+  public SetElevatorSetpoint() {
     requires(Robot.elevator);
   }
 

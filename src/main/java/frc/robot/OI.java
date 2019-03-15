@@ -99,6 +99,7 @@ public class OI {
       return 0;
     }
     return y;
+    // return Math.pow(2, y);
   }
 
   public double getOperatorGamepadRightY() {  

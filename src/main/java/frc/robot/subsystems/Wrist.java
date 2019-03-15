@@ -25,33 +25,45 @@ public class Wrist extends Subsystem {
 
   /****************** CONSTANT VALUES *****************/
   public final double STOP_SPEED = 0.00;
-
   public final double PID_WRIST_SPEED = 0.50;
   
-  private final int PID_SLOT_ID = 1;
-  private final double kP = 0;
-  private final double kI = 0;
-  private final double kD = 0;
-  private final double kF = 0;
+  private final int PID_SLOT_ID = 0;
+  private final int ALLOWABLE_ERROR = 0;
+  private final int TIMEOUT_MS = 30;
+
+  private final double kP = 0.0;
+  private final double kI = 0.0;
+  private final double kD = 0.0;
+  private final double kF = 0.0;
   /****************************************************/
 
   // wrist motor controller
   WPI_TalonSRX wristTalon = new WPI_TalonSRX(RobotMap.wristPort);
 
   public Wrist() {
+    wristTalon.setNeutralMode(NeutralMode.Brake);
+    wristTalon.setSensorPhase(true);
 
-    // set the encoder to a TalonSRX Quadrature Encoder
-    wristTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+    wristTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,
+                                            PID_SLOT_ID, 
+                                            TIMEOUT_MS);
+
+    wristTalon.configNominalOutputForward(STOP_SPEED, TIMEOUT_MS);
+    wristTalon.configNominalOutputReverse(STOP_SPEED, TIMEOUT_MS);
+    wristTalon.configPeakOutputForward(PID_WRIST_SPEED, TIMEOUT_MS);
+    wristTalon.configPeakOutputReverse(-PID_WRIST_SPEED, TIMEOUT_MS);
+
+    wristTalon.configAllowableClosedloopError(PID_SLOT_ID, ALLOWABLE_ERROR, TIMEOUT_MS);
 
     wristTalon.config_kP(PID_SLOT_ID, kP);
     wristTalon.config_kI(PID_SLOT_ID, kI);
     wristTalon.config_kD(PID_SLOT_ID, kD);
     wristTalon.config_kF(PID_SLOT_ID, kF);
 
-    wristTalon.configNominalOutputForward(PID_WRIST_SPEED);
-    wristTalon.configNominalOutputReverse(-PID_WRIST_SPEED);
-    
-    wristTalon.setNeutralMode(NeutralMode.Brake);
+    int absolutePosition = wristTalon.getSensorCollection().getPulseWidthPosition();
+    absolutePosition &= 0xFFF;
+
+    wristTalon.setSelectedSensorPosition(absolutePosition, PID_SLOT_ID, TIMEOUT_MS);
   }
 
   public void debugPrint() {
@@ -70,8 +82,8 @@ public class Wrist extends Subsystem {
 
   // allows the wrist to be set to different positions based on
   // sensor values
-  public void setWristSetpoint(int setpoint) {
-    wristTalon.setSelectedSensorPosition(setpoint);
+  public void setWristSetpoint(double setpoint) {
+    wristTalon.set(ControlMode.Position, setpoint);
   }
   
   // stops the elevator
