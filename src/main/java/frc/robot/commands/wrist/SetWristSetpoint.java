@@ -14,20 +14,19 @@ public class SetWristSetpoint extends Command {
 
   private double setpoint;
 
-  public SetWristSetpoint() {
+  public SetWristSetpoint(double setpoint) {
     requires(Robot.wrist);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.wrist.setWristSetpoint(setpoint);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.wrist.setWristSetpoint(setpoint);
-    Robot.wrist.debugPrint();
   }
 
   // Make this return true when this Command no longer needs to run execute()

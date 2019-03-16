@@ -14,7 +14,7 @@ public class SetElevatorSetpoint extends Command {
 
   private double setpoint;
 
-  public SetElevatorSetpoint() {
+  public SetElevatorSetpoint(double setpoint) {
     requires(Robot.elevator);
   }
 

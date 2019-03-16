@@ -92,7 +92,7 @@ public class Elevator extends Subsystem {
   // allows the wrist to be set to different positions based on
   // sensor values
   public void setElevatorSetpoint(double setpoint) {
-    elevatorTalon.set(ControlMode.Position, 0.0);
+    elevatorTalon.set(ControlMode.Position, setpoint);
   }
   
   // stops the elevator

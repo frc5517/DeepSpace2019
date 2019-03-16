@@ -31,12 +31,11 @@ public class Wrist extends Subsystem {
   private final int ALLOWABLE_ERROR = 0;
   private final int TIMEOUT_MS = 30;
 
-  private final double kP = 0.0;
+  private final double kP = 0.10438776;
   private final double kI = 0.0;
   private final double kD = 0.0;
-  private final double kF = 0.0;
   /****************************************************/
-
+  
   // wrist motor controller
   WPI_TalonSRX wristTalon = new WPI_TalonSRX(RobotMap.wristPort);
 
@@ -58,8 +57,7 @@ public class Wrist extends Subsystem {
     wristTalon.config_kP(PID_SLOT_ID, kP);
     wristTalon.config_kI(PID_SLOT_ID, kI);
     wristTalon.config_kD(PID_SLOT_ID, kD);
-    wristTalon.config_kF(PID_SLOT_ID, kF);
-
+    
     int absolutePosition = wristTalon.getSensorCollection().getPulseWidthPosition();
     absolutePosition &= 0xFFF;
 
