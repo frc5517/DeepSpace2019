@@ -10,6 +10,11 @@ package frc.robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.cargoManipulator.SpinIntakeIn;
 import frc.robot.commands.cargoManipulator.SpinIntakeOut;
+<<<<<<< HEAD
+=======
+import frc.robot.commands.elevator.LowerElevator;
+import frc.robot.commands.elevator.RaiseElevator;
+>>>>>>> 4432c0f0979a867d0f79a8af8bebec6f8311cd74
 import frc.robot.commands.hatchManipulator.ExtendHatchManipulatorSolenoid;
 import frc.robot.utilities.Gamepad;
 import frc.robot.utilities.LogitechJoystick;
@@ -37,6 +42,13 @@ public class OI {
     leftJoystick.getJoystickButton(LogitechJoystick.BUTTON_2).whileHeld(new ExtendHatchManipulatorSolenoid());
     leftJoystick.getJoystickTrigger().whileHeld(new SpinIntakeOut());
     rightJoystick.getJoystickTrigger().whileHeld(new SpinIntakeIn());
+<<<<<<< HEAD
+=======
+
+    // Operator Commands
+    operatorGamepad.getRightShoulder().whileHeld(new RaiseElevator());
+    operatorGamepad.getLeftShoulder().whileHeld(new LowerElevator());
+>>>>>>> 4432c0f0979a867d0f79a8af8bebec6f8311cd74
   }
 
   public boolean isFullSpeedActivated() {
