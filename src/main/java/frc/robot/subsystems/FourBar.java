@@ -8,7 +8,6 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-// import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -24,29 +23,15 @@ public class Fourbar extends Subsystem {
 
   public final double STOP_SPEED = 0.00;
 
-  /****************** PID VALUES ******************/
-  // private final int PID_SLOT_ID = 0;
-  // private final double kP = 0;
-  // private final double kI = 0;
-  // private final double kD = 0;
-  // private final double kF = 0;
-  /***********************************************/
-
   // four-bar motor controller
-  WPI_TalonSRX fourbarTalon = new WPI_TalonSRX(RobotMap.fourBarPort);
+  WPI_TalonSRX fourbarLeftTalon = new WPI_TalonSRX(RobotMap.fourbarLeftPort);
+  WPI_TalonSRX fourbarRightTalon = new WPI_TalonSRX(RobotMap.fourbarRightPort);
 
   public Fourbar() {
 
-    // // setting the encoder to a TalonSRX Quadrature Encoder
-    // fourbarTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
-
-    // fourbarTalon.config_kP(PID_SLOT_ID, kP);
-    // fourbarTalon.config_kI(PID_SLOT_ID, kI);
-    // fourbarTalon.config_kD(PID_SLOT_ID, kD);
-    // fourbarTalon.config_kF(PID_SLOT_ID, kF);
-
     // putting the fourbar in Brake mode
-    fourbarTalon.setNeutralMode(NeutralMode.Brake);
+    fourbarLeftTalon.setNeutralMode(NeutralMode.Brake);
+    fourbarRightTalon.setNeutralMode(NeutralMode.Brake);
   }
 
   @Override
@@ -55,21 +40,21 @@ public class Fourbar extends Subsystem {
   }
 
   public void debugPrint() {
-    TalonDebug.printSrxClosedLoopValues(fourbarTalon, "Fourbar");
+
+    // print values of each TalonSRX
+    TalonDebug.printSrxClosedLoopValues(fourbarLeftTalon, "Left Fourbar");
+    TalonDebug.printSrxClosedLoopValues(fourbarRightTalon, "Right Fourbar");
   }
 
   // moves the fourbar motor
   public void moveFourbar(double speed) {
-    fourbarTalon.set(ControlMode.PercentOutput, speed);
+    fourbarLeftTalon.set(ControlMode.PercentOutput, speed);
+    fourbarRightTalon.set(ControlMode.PercentOutput, -speed);
   }  
+  
   // stops the fourbar
   public void stopFourbarMotor() {
-    fourbarTalon.set(ControlMode.PercentOutput, STOP_SPEED);
+    fourbarLeftTalon.set(ControlMode.PercentOutput, STOP_SPEED);
+    fourbarRightTalon.set(ControlMode.PercentOutput, STOP_SPEED);
   }
-
-  // allows the fourbar to be set to different positions based on
-  // sensor values
-  // public void setFourbarSetpoint(int setpoint) {
-  //   fourbarTalon.setSelectedSensorPosition(setpoint);
-  // }
 }

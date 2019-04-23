@@ -10,9 +10,6 @@ package frc.robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.cargoManipulator.SpinIntakeIn;
 import frc.robot.commands.cargoManipulator.SpinIntakeOut;
-import frc.robot.commands.elevator.LowerElevator;
-import frc.robot.commands.elevator.RaiseElevator;
-import frc.robot.commands.wrist.SetWristSetpoint;
 import frc.robot.commands.hatchManipulator.ExtendHatchManipulatorSolenoid;
 import frc.robot.utilities.Gamepad;
 import frc.robot.utilities.LogitechJoystick;
@@ -40,17 +37,6 @@ public class OI {
     leftJoystick.getJoystickButton(LogitechJoystick.BUTTON_2).whileHeld(new ExtendHatchManipulatorSolenoid());
     leftJoystick.getJoystickTrigger().whileHeld(new SpinIntakeOut());
     rightJoystick.getJoystickTrigger().whileHeld(new SpinIntakeIn());
-
-    // Operator Commands
-    operatorGamepad.getRightShoulder().whileHeld(new RaiseElevator());
-    operatorGamepad.getLeftShoulder().whileHeld(new LowerElevator());
-
-    // operatorGamepad.getButtonY().whenPressed(new SetAllLowRocketPosition());
-    // operatorGamepad.getRightShoulder().whenPressed(new SetAllMiddleRocketPosition());
-    // operatorGamepad.getRightTrigger().whenPressed(new SetAllHighRocketPosition());
-    // operatorGamepad.getLeftShoulder().whenPressed(new SetAllHatchCollectingPosition());
-    // operatorGamepad.getLeftTrigger().whenPressed(new SetAllCargoCollectingPosition());
-    // operatorGamepad.getButtonA().whenPressed(new SetWristSetpoint(-3000.0));
   }
 
   public boolean isFullSpeedActivated() {

@@ -24,7 +24,6 @@ import frc.robot.commands.drivetrain.CurvatureDrive;
 import frc.robot.subsystems.Fourbar;
 import frc.robot.subsystems.CargoManiuplator;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.HatchManipulator;
 import frc.robot.subsystems.Wrist;
 
@@ -42,7 +41,6 @@ public class Robot extends TimedRobot {
   // initializing subsystems
   public static Drivetrain drivetrain = new Drivetrain();
   public static Fourbar fourbar = new Fourbar();
-  public static Elevator elevator = new Elevator();
   public static Wrist wrist = new Wrist();
   public static CargoManiuplator cargoManiuplator = new CargoManiuplator();
   public static HatchManipulator hatchManipulator = new HatchManipulator();
@@ -62,17 +60,17 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto mode", chooser);
 
     startCameraOneThread();
-    startCameraTwoThread();
+    // startCameraTwoThread();
   }
 
   private void startCameraOneThread() {
     new Thread(() -> {
       UsbCamera cameraOne = CameraServer.getInstance().startAutomaticCapture();
       cameraOne.setResolution(256, 144);
-      cameraOne.setFPS(15);
+      cameraOne.setFPS(30);
       
       CvSink cvSink = CameraServer.getInstance().getVideo();
-      CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 256, 144);
+      CvSource outputStream = CameraServer.getInstance().putVideo("Camera One", 256, 144);
       
       Mat source = new Mat();
       Mat output = new Mat();
@@ -85,25 +83,25 @@ public class Robot extends TimedRobot {
     }).start();
   }
 
-  private void startCameraTwoThread() {
-    new Thread(() -> {
-      UsbCamera cameraTwo = CameraServer.getInstance().startAutomaticCapture();
-      cameraTwo.setResolution(256, 144);
-      cameraTwo.setFPS(15);
+  // private void startCameraTwoThread() {
+  //   new Thread(() -> {
+  //     UsbCamera cameraTwo = CameraServer.getInstance().startAutomaticCapture();
+  //     cameraTwo.setResolution(256, 144);
+  //     cameraTwo.setFPS(15);
       
-      CvSink cvSink = CameraServer.getInstance().getVideo();
-      CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 256, 144);
+  //     CvSink cvSink = CameraServer.getInstance().getVideo();
+  //     CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 256, 144);
       
-      Mat source = new Mat();
-      Mat output = new Mat();
+  //     Mat source = new Mat();
+  //     Mat output = new Mat();
       
-      while(!Thread.interrupted()) {
-          cvSink.grabFrame(source);
-          Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
-          outputStream.putFrame(output);
-      }
-    }).start();
-  }
+  //     while(!Thread.interrupted()) {
+  //         cvSink.grabFrame(source);
+  //         Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
+  //         outputStream.putFrame(output);
+  //     }
+  //   }).start();
+  // }
 
   /**
    * This function is called every robot packet, no matter the mode. Use
