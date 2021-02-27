@@ -31,7 +31,7 @@ public class CurvatureDrive extends Command {
     double speed = -Robot.oi.getRightJoystickY() * 
       (Robot.oi.isFullSpeedActivated() ? FULL_SPEED_MULTIPLIER : REGULAR_SPEED_MULTIPLIER);
 
-    double rotation = Robot.oi.getLeftJoystickX() * ROTATION_MULTIPLIER;
+    double rotation = Robot.oi.getLeftJoystickX();
 
     // double speed = -Robot.oi.getDriverGamepadLeftY() * 
     //   (Robot.oi.isFullSpeedActivated() ? FULL_SPEED_MULTIPLIER : REGULAR_SPEED_MULTIPLIER);

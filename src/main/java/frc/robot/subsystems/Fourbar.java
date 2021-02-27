@@ -48,8 +48,8 @@ public class Fourbar extends Subsystem {
 
   // moves the fourbar motor
   public void moveFourbar(double speed) {
-    fourbarLeftTalon.set(ControlMode.PercentOutput, speed);
-    fourbarRightTalon.set(ControlMode.PercentOutput, -speed);
+    fourbarLeftTalon.set(ControlMode.PercentOutput, -speed);
+    fourbarRightTalon.set(ControlMode.PercentOutput, speed);
   }  
   
   // stops the fourbar

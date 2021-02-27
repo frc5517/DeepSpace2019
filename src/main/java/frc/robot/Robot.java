@@ -9,6 +9,7 @@ package frc.robot;
 
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
+import org.opencv.videoio.VideoCapture;
 
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
@@ -64,23 +65,26 @@ public class Robot extends TimedRobot {
   }
 
   private void startCameraOneThread() {
-    new Thread(() -> {
-      UsbCamera cameraOne = CameraServer.getInstance().startAutomaticCapture();
-      cameraOne.setResolution(256, 144);
-      cameraOne.setFPS(30);
+    VideoCapture camera = new VideoCapture(0);
+    Mat frame = new Mat();
+    camera.read(frame);
+  //   new Thread(() -> {
+  //     UsbCamera cameraOne = CameraServer.getInstance().startAutomaticCapture();
+  //     cameraOne.setResolution(256, 144);
+  //     cameraOne.setFPS(30);
       
-      CvSink cvSink = CameraServer.getInstance().getVideo();
-      CvSource outputStream = CameraServer.getInstance().putVideo("Camera One", 256, 144);
+  //     CvSink cvSink = CameraServer.getInstance().getVideo();
+  //     CvSource outputStream = CameraServer.getInstance().putVideo("Camera One", 256, 144);
       
-      Mat source = new Mat();
-      Mat output = new Mat();
+  //     Mat source = new Mat();
+  //     Mat output = new Mat();
       
-      while(!Thread.interrupted()) {
-          cvSink.grabFrame(source);
-          Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
-          outputStream.putFrame(output);
-      }
-    }).start();
+  //     while(!Thread.interrupted()) {
+  //         cvSink.grabFrame(source);
+  //         Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
+  //         outputStream.putFrame(output);
+  //     }
+  //   }).start();
   }
 
   // private void startCameraTwoThread() {

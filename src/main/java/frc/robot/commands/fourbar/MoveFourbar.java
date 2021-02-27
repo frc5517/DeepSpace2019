@@ -24,7 +24,7 @@ public class MoveFourbar extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.fourbar.moveFourbar(Robot.oi.getOperatorGamepadRightY() * 0.5);
+    Robot.fourbar.moveFourbar(Robot.oi.getOperatorGamepadRightY() * 0.75);
   }
 
   // Make this return true when this Command no longer needs to run execute()
