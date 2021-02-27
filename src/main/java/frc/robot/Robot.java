@@ -15,6 +15,7 @@ import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -61,20 +62,17 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto mode", chooser);
 
     startCameraOneThread();
-    // startCameraTwoThread();
+    startCameraTwoThread();
   }
 
   private void startCameraOneThread() {
-    VideoCapture camera = new VideoCapture(0);
-    Mat frame = new Mat();
-    camera.read(frame);
-  //   new Thread(() -> {
-  //     UsbCamera cameraOne = CameraServer.getInstance().startAutomaticCapture();
-  //     cameraOne.setResolution(256, 144);
-  //     cameraOne.setFPS(30);
+    new Thread(() -> {
+      UsbCamera cameraOne = CameraServer.getInstance().startAutomaticCapture();
+      cameraOne.setResolution(256, 144);
+      cameraOne.setFPS(15);
       
-  //     CvSink cvSink = CameraServer.getInstance().getVideo();
-  //     CvSource outputStream = CameraServer.getInstance().putVideo("Camera One", 256, 144);
+      CvSink cvSink = CameraServer.getInstance().getVideo();
+      CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 256, 144);
       
   //     Mat source = new Mat();
   //     Mat output = new Mat();
@@ -87,25 +85,25 @@ public class Robot extends TimedRobot {
   //   }).start();
   }
 
-  // private void startCameraTwoThread() {
-  //   new Thread(() -> {
-  //     UsbCamera cameraTwo = CameraServer.getInstance().startAutomaticCapture();
-  //     cameraTwo.setResolution(256, 144);
-  //     cameraTwo.setFPS(15);
+  private void startCameraTwoThread() {
+    new Thread(() -> {
+      UsbCamera cameraTwo = CameraServer.getInstance().startAutomaticCapture();
+      cameraTwo.setResolution(256, 144);
+      cameraTwo.setFPS(15);
       
-  //     CvSink cvSink = CameraServer.getInstance().getVideo();
-  //     CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 256, 144);
+      CvSink cvSink = CameraServer.getInstance().getVideo();
+      CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 256, 144);
       
-  //     Mat source = new Mat();
-  //     Mat output = new Mat();
+      Mat source = new Mat();
+      Mat output = new Mat();
       
-  //     while(!Thread.interrupted()) {
-  //         cvSink.grabFrame(source);
-  //         Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
-  //         outputStream.putFrame(output);
-  //     }
-  //   }).start();
-  // }
+      while(!Thread.interrupted()) {
+          cvSink.grabFrame(source);
+          Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
+          outputStream.putFrame(output);
+      }
+    }).start();
+  }
 
   /**
    * This function is called every robot packet, no matter the mode. Use
@@ -117,6 +115,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putNumber("Match Time", DriverStation.getInstance().getMatchTime());
   }
 
   /**
